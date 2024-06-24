@@ -32,7 +32,7 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-//        launch();
+        launch();
 //        DoublyCircularLinkedList dc = new DoublyCircularLinkedList();
 //        dc.addLast(1);
 //        dc.addLast(2);
