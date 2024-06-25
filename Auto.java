@@ -22,10 +22,11 @@ public class Auto {
     private String transmision;
     private int motor;
     private String foto;
+    private String color;
     private Queue<Accidente> accidentes;
     private Queue<Mantenimiento> mantenimientos;
 
-    public Auto(String marca, String modelo, int precio, int año, double kilometraje, String ubicacion, double peso, String transmision, int motor, String foto, Queue<Accidente> accidentes, Queue<Mantenimiento> mantenimientos) {
+    public Auto(String marca, String modelo, int precio, int año, double kilometraje, String ubicacion, double peso, String transmision, int motor, String foto, String color, Queue<Accidente> accidentes, Queue<Mantenimiento> mantenimientos) {
         this.marca = marca;
         this.modelo = modelo;
         this.precio = precio;
@@ -36,6 +37,7 @@ public class Auto {
         this.transmision = transmision;
         this.motor = motor;
         this.foto = foto;
+        this.color=color;
         this.accidentes = accidentes;
         this.mantenimientos = mantenimientos;
     }
@@ -96,6 +98,14 @@ public class Auto {
         this.foto=foto;
     }
     
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+    
     public void agregarAccidente(Accidente a){
         accidentes.offer(a);
     }
@@ -103,5 +113,66 @@ public class Auto {
     public void agregarMantenimiento(Mantenimiento m){
         mantenimientos.offer(m);
     }
+
+    //Comparacion por precios de menor a mayor
+//    @Override
+//    public int compareTo(Auto o) {
+//        return Integer.compare(this.precio, o.precio);
+//    }
+//    Comparacion por precios de mayor a menor
+//    @Override
+//    public int compareTo(Auto o) {
+//        return Integer.compare(o.precio, this.precio);
+//    }
     
+    // Comparacion por años de menor a mayor
+//    @Override
+//    public int compareTo(Auto o) {
+//        return Integer.compare(this.año, o.año);
+//    }
+    // Comparacion por años de mayor a menor
+//    @Override
+//    public int compareTo(Auto o) {
+//        return Integer.compare(o.año, this.año);
+//    }
+    
+    //Comparacion kilometraje de menor a mayor
+//    @Override
+//    public int compareTo(Auto o) {
+//        return Double.compare(this.kilometraje,o.kilometraje);
+//    }
+    //Comparacion kilometraje mayor a menor
+//    @Override
+//    public int compareTo(Auto o) {
+//        return Double.compare(o.kilometraje,this.kilometraje);
+//    }
+    
+    //Comparacion color
+//    @Override
+//    public int compareTo(Auto o) {
+//        return this.color.compareToIgnoreCase(o.color);
+//    }
+    
+    //Comparacion marca
+//    @Override
+//    public int compareTo(Auto o) {
+//        return this.marca.compareToIgnoreCase(o.marca);
+//    }
+    
+    //Comparacion modelo
+//    @Override
+//    public int compareTo(Auto o) {
+//        return this.modelo.compareToIgnoreCase(o.modelo);
+//    }
+    
+    //Comparacion peso de menor a mayor
+//    @Override
+//    public int compareTo(Auto o) {
+//        return Double.compare(this.peso,o.peso);
+//    }
+    //Comparacion peso mayor a menor
+    @Override
+    public int compareTo(Auto o) {
+        return Double.compare(o.peso,this.peso);
+    }
 }
