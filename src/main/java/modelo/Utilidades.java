@@ -17,9 +17,10 @@ import lists.*;
  */
 public class Utilidades {
     public static boolean registrarUsuario(Usuario us){
-        try(BufferedWriter bf = new BufferedWriter(new FileWriter("src/main/resources/files/users.txt"))){
+        try(BufferedWriter bf = new BufferedWriter(new FileWriter("src/main/resources/files/users.txt",true))){
             String line = us.getUsuario() + "," + us.getNombre() + "," + us.getApellido() +"," +  us.getMail() + "," + us.getContrasena();
             bf.write(line);
+            bf.newLine();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
