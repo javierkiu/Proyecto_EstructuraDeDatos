@@ -4,14 +4,14 @@
  */
 package ec.edu.espol.proyecto2;
 
-import java.util.PriorityQueue;
+import java.io.Serializable;
 import java.util.Queue;
 
 /**
  *
  * @author Steven Morocho
  */
-public class Auto {
+public class Auto implements Serializable{
     private String marca;
     private String modelo;
     private int precio;
