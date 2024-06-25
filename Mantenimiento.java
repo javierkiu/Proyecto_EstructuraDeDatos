@@ -3,12 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ec.edu.espol.proyecto2;
-
+import java.io.Serializable;
 /**
  *
  * @author Steven Morocho
  */
-public class Mantenimiento implements Comparable<Mantenimiento>{
+public class Mantenimiento implements Comparable<Mantenimiento>, Serializable{
     private String descripcion;
     private int año;
 
