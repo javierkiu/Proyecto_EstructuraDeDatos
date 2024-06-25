@@ -44,7 +44,7 @@ public class Mantenimiento implements Comparable<Mantenimiento>, Serializable{
 //    }
     @Override
     public String toString() {
-        return "Mantenimiento{" + "descripcion=" + descripcion + ", a\u00f1o=" + año + '}';
+        return "Mantenimiento{" + "descripcion=" + descripcion + ", año=" + año + '}';
     }
     
 }
