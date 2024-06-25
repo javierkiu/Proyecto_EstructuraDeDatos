@@ -10,8 +10,12 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import modelo.*;
+import lists.*;
 
 /**
  * FXML Controller class
@@ -22,6 +26,10 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private Button iniSesBt;
+    @FXML
+    private TextField emailLog;
+    @FXML
+    private TextField passwordLog;
 
     /**
      * Initializes the controller class.
@@ -38,7 +46,30 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private void inicio(ActionEvent event) throws IOException {
-        
+        if(iniSesBt.getText().equals("") || passwordLog.getText().equals("")){
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("Ingresar todos los campos!!");
+            a.show();
+        }
+        else if(!Utilidades.obtenerCorreos().contains(emailLog.getText())
+                && !Utilidades.obtenerUsuarios().contains(emailLog.getText())){
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("Email o Usuario no registrado!!");
+            a.show();
+        }
+        else if (!Utilidades.obtenerDatosUsuario(emailLog.getText()).getContrasena().equals(passwordLog.getText())){
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("Contrasena incorrecta!!");
+            a.show();
+        }
+        else{
+            Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+            a.setContentText("Sesion iniciada!!");
+            a.show();
+            
+            
+            // CANBIAR DE ESCENARIO
+        }
         
     }
     

@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import modelo.*;
 
 public class SecondaryController {
@@ -54,5 +55,11 @@ public class SecondaryController {
             a.show(); 
             App.setRoot("primary");
         }
+    }
+
+    @FXML
+    private void volver(MouseEvent event) throws IOException {
+        App.setRoot("primary");
+
     }
 }

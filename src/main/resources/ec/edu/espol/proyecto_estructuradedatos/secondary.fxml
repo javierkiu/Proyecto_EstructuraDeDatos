@@ -5,169 +5,171 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="480.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyecto_estructuradedatos.SecondaryController">
+<VBox alignment="CENTER" prefHeight="669.0" prefWidth="938.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyecto_estructuradedatos.SecondaryController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <children>
-      <Label alignment="CENTER" prefHeight="37.0" prefWidth="168.0" style="-fx-underline: black;" text="Registrarse" textFill="#ab0000">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-         <effect>
-            <InnerShadow />
-         </effect>
-      </Label>
-      <HBox alignment="CENTER" prefHeight="65.0" prefWidth="600.0">
+      <HBox alignment="CENTER" prefHeight="60.0" prefWidth="898.0">
          <children>
-            <VBox prefHeight="54.0" prefWidth="154.0">
-               <children>
-                  <Label alignment="CENTER" text="Nombre">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="nameRegistro" prefHeight="27.0" prefWidth="132.0" promptText="Nombre" style="-fx-border-color: #670010;">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </TextField>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="10.0" right="10.0" />
-               </padding>
-            </VBox>
-            <VBox prefHeight="65.0" prefWidth="154.0">
-               <children>
-                  <Label alignment="CENTER" text="Apellido">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="apellidoRegistro" prefHeight="27.0" prefWidth="144.0" promptText="Apellido" style="-fx-border-color: #670010;">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </TextField>
-               </children>
-               <padding>
-                  <Insets left="10.0" right="10.0" />
-               </padding>
-            </VBox>
+            <Label alignment="CENTER" prefHeight="37.0" prefWidth="168.0" style="-fx-underline: black;" text="Registrarse" textFill="#ab0000">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </Label>
+            <Label onMouseClicked="#volver" text="Volver">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
          </children>
       </HBox>
-      <VBox prefHeight="54.0" prefWidth="545.0">
+      <GridPane alignment="CENTER" prefHeight="437.0" prefWidth="898.0">
+        <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="249.0" minWidth="10.0" prefWidth="226.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="378.0" minWidth="10.0" prefWidth="378.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="248.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <Label text="Usuario">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="usuarioRegistro" prefHeight="27.0" prefWidth="276.0" promptText="Usuario" style="-fx-border-color: #670010;">
-               <VBox.margin>
+            <VBox prefHeight="80.0" prefWidth="565.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label text="Usuario">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="usuarioRegistro" prefHeight="34.0" prefWidth="398.0" promptText="Usuario" style="-fx-border-color: #670010;">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+               <GridPane.margin>
                   <Insets />
-               </VBox.margin>
-            </TextField>
-         </children>
-         <padding>
-            <Insets left="160.0" right="160.0" />
-         </padding>
-      </VBox>
-      <VBox prefHeight="24.0" prefWidth="449.0">
-         <children>
-            <Label text="Correo">
+               </GridPane.margin>
+            </VBox>
+            <VBox prefHeight="79.0" prefWidth="494.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Label text="Correo">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="mailRegistro" prefHeight="34.0" prefWidth="336.0" promptText="Correo" style="-fx-border-color: #670010;">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox prefHeight="79.0" prefWidth="466.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Label text="Contraseña">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="passwordRegistro" prefHeight="34.0" prefWidth="336.0" promptText="Contraseña" style="-fx-border-color: #670010;">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox prefHeight="29.0" prefWidth="449.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <Label text="Repetir contraseña">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="repasswordRegistro" prefHeight="34.0" prefWidth="497.0" promptText="Contraseña" style="-fx-border-color: #670010;">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <Button mnemonicParsing="false" onAction="#goToLog" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: #3c0000;" text="Enviar" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="mailRegistro" prefHeight="27.0" prefWidth="224.0" promptText="Correo" style="-fx-border-color: #670010;">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </TextField>
+               <padding>
+                  <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+               </padding>
+            </Button>
+            <HBox alignment="CENTER" prefHeight="65.0" prefWidth="600.0" GridPane.columnIndex="1">
+               <children>
+                  <VBox prefHeight="66.0" prefWidth="189.0">
+                     <children>
+                        <Label alignment="CENTER" text="Nombre">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="nameRegistro" prefHeight="34.0" prefWidth="177.0" promptText="Nombre" style="-fx-border-color: #670010;">
+                           <VBox.margin>
+                              <Insets right="4.0" />
+                           </VBox.margin>
+                        </TextField>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </VBox>
+                  <VBox prefHeight="65.0" prefWidth="189.0">
+                     <children>
+                        <Label alignment="CENTER" text="Apellido">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="apellidoRegistro" prefHeight="34.0" prefWidth="144.0" promptText="Apellido" style="-fx-border-color: #670010;">
+                           <VBox.margin>
+                              <Insets left="4.0" />
+                           </VBox.margin>
+                        </TextField>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
-         <padding>
-            <Insets left="160.0" right="160.0" />
-         </padding>
-      </VBox>
-      <VBox prefHeight="54.0" prefWidth="362.0">
-         <children>
-            <Label text="Contraseña">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="passwordRegistro" prefHeight="12.0" prefWidth="449.0" promptText="Contraseña" style="-fx-border-color: #670010;">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </TextField>
-         </children>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-         <padding>
-            <Insets left="160.0" right="160.0" />
-         </padding>
-      </VBox>
-      <VBox prefHeight="29.0" prefWidth="449.0">
-         <children>
-            <Label text="Repetir contraseña">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="repasswordRegistro" promptText="Contraseña" style="-fx-border-color: #670010;">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </TextField>
-         </children>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-         <padding>
-            <Insets left="160.0" right="160.0" />
-         </padding>
-      </VBox>
-      <Button mnemonicParsing="false" onAction="#goToLog" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: #3c0000;" text="Enviar" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-         <padding>
-            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-         </padding>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-      </Button>
+      </GridPane>
    </children>
 </VBox>

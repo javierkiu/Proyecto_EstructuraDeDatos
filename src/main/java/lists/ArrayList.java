@@ -19,18 +19,18 @@ public class ArrayList<E> implements List<E>{
     }
     
     public ArrayList (){
-        
-        //int[] a;
-        
-        //a = new int[100];
-        
-        //elements = new E[100]; NO FUNCIONA
-        
         elements = (E[])(new Object[capacity]); // SI FUNCIONA con Casting permitido con el arrayList
         effectiveSize = 0;
     }
     
-
+    public boolean contains(E element){
+        for (int i = 0; i < effectiveSize; i++) {
+            if(elements[i].equals(element)){
+                return true;
+            }
+        }
+        return false;
+    }
     
     private boolean isFull(){
         return effectiveSize == capacity;
@@ -53,8 +53,7 @@ public class ArrayList<E> implements List<E>{
         
         for (int i=effectiveSize-1; i >=0; i--){
             elements[i+1]=elements[i]; //bit shifting 
-            //desplazamiento de valores hacia la derecha, 
-            //debe empezar de atras hacia adelante
+
         }
         elements[0] = e;
         effectiveSize++;
@@ -71,7 +70,6 @@ public class ArrayList<E> implements List<E>{
         }
         elements[effectiveSize] = e;
         effectiveSize++;
-        //elements[effectiveSize++] = e; otra forma de hacer las 2 lineas anteriores
         return true;
     }
 
@@ -181,8 +179,6 @@ public class ArrayList<E> implements List<E>{
     }
 
 
-    
-    
     // FIND 
     public E find(Comparator comp, E elemento){
         for (int i = 0; i < effectiveSize; i++) {

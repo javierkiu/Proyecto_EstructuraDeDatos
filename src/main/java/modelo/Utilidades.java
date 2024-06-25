@@ -9,6 +9,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import lists.*;
 
 /**
  *
@@ -36,5 +37,45 @@ public class Utilidades {
             ex.printStackTrace();
         }
         return true;
+    }
+    public static ArrayList<String> obtenerUsuarios(){
+        ArrayList<String> result = new ArrayList<>();
+        try(BufferedReader bf = new BufferedReader(new FileReader("src/main/resources/files/users.txt"))){
+            String line;
+            while((line = bf.readLine())!=null){
+                result.addLast(line.split(",")[0]);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+    public static ArrayList<String> obtenerCorreos(){
+        ArrayList<String> result = new ArrayList<>();
+        try(BufferedReader bf = new BufferedReader(new FileReader("src/main/resources/files/users.txt"))){
+            String line;
+            while((line = bf.readLine())!=null){
+                result.addLast(line.split(",")[3]);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+    
+    public static Usuario obtenerDatosUsuario(String usuario){
+        Usuario u;
+        try(BufferedReader bf = new BufferedReader(new FileReader("src/main/resources/files/users.txt"))){
+            String line;
+            while((line = bf.readLine())!=null){
+                String[] sp = line.split(",");
+                if(sp[0].equals(usuario)||sp[3].equals(usuario)){
+                    return new Usuario(sp[0], sp[1],sp[2],sp[3],sp[4]);
+                }
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } 
+        return null;
     }
 }

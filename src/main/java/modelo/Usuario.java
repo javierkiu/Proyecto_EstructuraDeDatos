@@ -35,7 +35,7 @@ public class Usuario {
         return mail;
     }
 
-    public Usuario(String nombre, String apellido, String usuario, String contrasena, String mail) {
+    public Usuario(String usuario, String nombre, String apellido, String mail, String contrasena) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.usuario = usuario;
