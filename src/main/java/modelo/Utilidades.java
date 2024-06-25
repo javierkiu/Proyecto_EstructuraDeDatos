@@ -39,30 +39,20 @@ public class Utilidades {
         }
         return true;
     }
-    public static ArrayList<String> obtenerUsuarios(){
+    public static ArrayList<String> obtenerIdentificadores(){
         ArrayList<String> result = new ArrayList<>();
         try(BufferedReader bf = new BufferedReader(new FileReader("src/main/resources/files/users.txt"))){
             String line;
             while((line = bf.readLine())!=null){
                 result.addLast(line.split(",")[0]);
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        return result;
-    }
-    public static ArrayList<String> obtenerCorreos(){
-        ArrayList<String> result = new ArrayList<>();
-        try(BufferedReader bf = new BufferedReader(new FileReader("src/main/resources/files/users.txt"))){
-            String line;
-            while((line = bf.readLine())!=null){
                 result.addLast(line.split(",")[3]);
-            }
+           }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
         return result;
     }
+
     
     public static Usuario obtenerDatosUsuario(String usuario){
         Usuario u;

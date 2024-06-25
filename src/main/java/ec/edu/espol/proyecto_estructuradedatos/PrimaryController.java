@@ -51,8 +51,7 @@ public class PrimaryController implements Initializable {
             a.setContentText("Ingresar todos los campos!!");
             a.show();
         }
-        else if(!Utilidades.obtenerCorreos().contains(emailLog.getText())
-                && !Utilidades.obtenerUsuarios().contains(emailLog.getText())){
+        else if(!Utilidades.obtenerIdentificadores().contains(emailLog.getText())){
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setContentText("Email o Usuario no registrado!!");
             a.show();
