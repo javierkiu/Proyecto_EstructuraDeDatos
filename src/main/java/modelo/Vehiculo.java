@@ -23,4 +23,62 @@ public class Vehiculo {
     private String placa;
     private DoublyCircularLinkedList<String> fotos;
     private ArrayList<String> accidentesOServicios;
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public Marca getMarca() {
+        return marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public int getAño() {
+        return año;
+    }
+
+    public int getKilometraje() {
+        return kilometraje;
+    }
+
+    public int getVentas() {
+        return ventas;
+    }
+
+    public String getMotor() {
+        return motor;
+    }
+
+    public String getTransmisión() {
+        return transmisión;
+    }
+
+    public String getPeso() {
+        return peso;
+    }
+
+    public String getUbicacionActualVehiculo() {
+        return ubicacionActualVehiculo;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public DoublyCircularLinkedList<String> getFotos() {
+        return fotos;
+    }
+
+    public ArrayList<String> getAccidentesOServicios() {
+        return accidentesOServicios;
+    }
+    
+    
 }
