@@ -5,12 +5,12 @@
 package ec.edu.espol.proyecto2;
 
 import java.util.Objects;
-
+import java.io.Serializable;
 /**
  *
  * @author Steven Morocho
  */
-public class Accidente implements Comparable<Accidente>{
+public class Accidente implements Comparable<Accidente>, Serializable{
     private String descripcion;
     private int año;
     private String gravedad;
@@ -100,7 +100,7 @@ public class Accidente implements Comparable<Accidente>{
 
     @Override
     public String toString() {
-        return "Accidente{" + "descripcion=" + descripcion + ", a\u00f1o=" + año + ", gravedad=" + gravedad + '}';
+        return "Accidente{" + "descripcion=" + descripcion + ", año=" + año + ", gravedad=" + gravedad + '}';
     }
     
 }
