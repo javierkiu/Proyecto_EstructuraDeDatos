@@ -38,14 +38,14 @@
             <Insets bottom="10.0" top="10.0" />
          </VBox.margin>
       </HBox>
-      <Label text="Email">
+      <Label text="Email o Usuario">
          <VBox.margin>
             <Insets bottom="10.0" top="10.0" />
          </VBox.margin>
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <TextField prefHeight="25.0" prefWidth="384.0" style="-fx-border-color: #3c0000;">
+      <TextField fx:id="emailLog" prefHeight="25.0" prefWidth="384.0" promptText="Email o Usuario" style="-fx-border-color: #3c0000;">
          <VBox.margin>
             <Insets bottom="20.0" left="200.0" right="200.0" />
          </VBox.margin>
@@ -57,7 +57,7 @@
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <TextField prefHeight="25.0" prefWidth="177.0" style="-fx-border-color: #3c0000;">
+      <TextField fx:id="passwordLog" prefHeight="25.0" prefWidth="177.0" promptText="Contrasena" style="-fx-border-color: #3c0000;">
          <VBox.margin>
             <Insets bottom="30.0" left="200.0" right="200.0" />
          </VBox.margin></TextField>
