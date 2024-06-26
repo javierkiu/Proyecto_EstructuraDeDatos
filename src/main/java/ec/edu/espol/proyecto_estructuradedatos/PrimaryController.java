@@ -67,7 +67,8 @@ public class PrimaryController implements Initializable {
             a.show();
             
             
-            // CANBIAR DE ESCENARIO
+            App.setRoot("RootWindow");
+            // CAMBIAR DE ESCENARIO
         }
         
     }
