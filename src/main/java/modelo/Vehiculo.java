@@ -26,7 +26,7 @@ public class Vehiculo {
 
     public double getPrecio() {
         return precio;
-    }
+}
 
     public Marca getMarca() {
         return marca;
