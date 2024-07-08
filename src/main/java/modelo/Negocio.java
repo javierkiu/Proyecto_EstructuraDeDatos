@@ -17,21 +17,26 @@ import lists.*;
  * @author Steven Morocho
  */
 public class Negocio {
-    private LinkedList<Auto> autosEnVenta;
+    private ArrayList<Auto> autosEnVenta;
     public Negocio(){
-        autosEnVenta=new LinkedList();
+        autosEnVenta=new ArrayList();
     }
     public void agregarAuto(Auto a){
         autosEnVenta.addFirst(a);
     }
+
+    public void setAutosEnVenta(ArrayList<Auto> autosEnVenta) {
+        this.autosEnVenta = autosEnVenta;
+    }
+    
     public void mostrarAutos(){
         while(!autosEnVenta.isEmpty())
             for(Auto a:autosEnVenta){
                 System.out.println(a);
             }
     }
-    public List<Auto> buscarPorMarca(String marca) {
-        List<Auto> resultado = new LinkedList<>();
+    public ArrayList<Auto> buscarPorMarca(String marca) {
+        ArrayList<Auto> resultado = new ArrayList<>();
         for (Auto auto : autosEnVenta) {
             if (auto.getMarca().equalsIgnoreCase(marca)) {
                 resultado.addFirst(auto);
@@ -39,8 +44,8 @@ public class Negocio {
         }
         return resultado;
     }
-    public List<Auto> buscarPorModelo(String modelo) {
-        List<Auto> resultado = new LinkedList<>();
+    public ArrayList<Auto> buscarPorModelo(String modelo) {
+        ArrayList<Auto> resultado = new ArrayList<>();
         for (Auto auto : autosEnVenta) {
             if (auto.getModelo().equalsIgnoreCase(modelo)) {
                 resultado.addFirst(auto);
@@ -48,8 +53,8 @@ public class Negocio {
         }
         return resultado;
     }
-    public List<Auto> buscarPorRangoDePrecio(int precioMin, int precioMax) {
-        List<Auto> resultado = new LinkedList<>();
+    public ArrayList<Auto> buscarPorRangoDePrecio(int precioMin, int precioMax) {
+        ArrayList<Auto> resultado = new ArrayList<>();
         for (Auto auto : autosEnVenta) {
             if (auto.getPrecio() >= precioMin && auto.getPrecio() <= precioMax) {
                 resultado.addFirst(auto);
@@ -57,8 +62,8 @@ public class Negocio {
         }
         return resultado;
     }
-    public List<Auto> filtrarPorAccidentesGravedad(String gravedad) {
-        List<Auto> resultado = new LinkedList<>();
+    public ArrayList<Auto> filtrarPorAccidentesGravedad(String gravedad) {
+        ArrayList<Auto> resultado = new ArrayList<>();
         for (Auto auto : autosEnVenta) {
             for (Accidente accidente : auto.getAccidentes()) {
                 if (accidente.getGravedad().equalsIgnoreCase(gravedad)) {
@@ -69,8 +74,8 @@ public class Negocio {
         }
         return resultado;
     }
-    public List<Auto> filtrarPorAccidentesAño(int año) {
-        List<Auto> resultado = new LinkedList<>();
+    public ArrayList<Auto> filtrarPorAccidentesAño(int año) {
+        ArrayList<Auto> resultado = new ArrayList<>();
         for (Auto auto : autosEnVenta) {
             for (Accidente accidente : auto.getAccidentes()) {
                 if (accidente.getAño()==año) {
@@ -81,8 +86,8 @@ public class Negocio {
         }
         return resultado;
     }
-    public List<Auto> filtrarPorMantenimientosAño(int año) {
-        List<Auto> resultado = new LinkedList<>();
+    public ArrayList<Auto> filtrarPorMantenimientosAño(int año) {
+        ArrayList<Auto> resultado = new ArrayList<>();
         for (Auto auto : autosEnVenta) {
             for (Mantenimiento m : auto.getMantenimientos()) {
                 if (m.getAño()==año) {
@@ -100,7 +105,7 @@ public class Negocio {
     }
     public void cargarDatos(String archivo) throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))) {
-            autosEnVenta = (LinkedList<Auto>) ois.readObject();
+            autosEnVenta = (ArrayList<Auto>) ois.readObject();
         }
     }
 }

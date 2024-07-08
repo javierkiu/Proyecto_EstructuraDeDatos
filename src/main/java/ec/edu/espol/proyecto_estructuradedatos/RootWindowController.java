@@ -7,7 +7,10 @@ package ec.edu.espol.proyecto_estructuradedatos;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -56,23 +59,23 @@ public class RootWindowController implements Initializable {
     
     private Stage stage;
     @FXML
-    private Label labeluser;
-    @FXML
-    private ImageView imgviewuser;
-    @FXML
     private Label searchTxt1;
     @FXML
-    private ComboBox<?> cvautos;
+    private ComboBox<String> cvautos;
     @FXML
-    private ComboBox<?> cvmarcas;
+    private ComboBox<String> cvmarcas;
     @FXML
-    private ComboBox<?> cvpreciosdesde;
+    private ComboBox<Integer> cvpreciosdesde;
     @FXML
-    private ComboBox<?> cvprecioshasta;
+    private ComboBox<Integer> cvprecioshasta;
     @FXML
-    private ComboBox<?> cvañosdesde;
+    private ComboBox<Integer> cvañosdesde;
     @FXML
-    private ComboBox<?> cvañoshasta;
+    private ComboBox<Integer> cvañoshasta;
+    @FXML
+    private HBox userHbox;
+    @FXML
+    private Button Buscar;
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -84,10 +87,6 @@ public class RootWindowController implements Initializable {
     @FXML
     private FlowPane optionsFPane;
     @FXML
-    private Button buyBtt;
-    @FXML
-    private Button sellBtt;
-    @FXML
     private Label searchTxt;
     private ComboBox<String> carFilter;
     private HBox listHBox;
@@ -96,37 +95,71 @@ public class RootWindowController implements Initializable {
     
     
     private ArrayList<Vehiculo> carros;     
-    private DoublyCircularLinkedList<Vehiculo> listaVenta;
     @FXML
     private FlowPane carrosfp;
     
     
     public void initializeData(String user){
         Usuario us = Utilidades.obtenerDatosUsuario(user);
-        labeluser.setText(us.getNombre() + " " + us.getApellido());
+        Label lb = new Label(us.getNombre() + " " + us.getApellido());
+        lb.setStyle("-fx-font-size: 15px; -fx-font-weight: bold;");
+        userHbox.getChildren().add(lb);
+        
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        imgviewuser.setImage(new Image("imgs/user.png"));
+        ImageView imgviewuser = new ImageView(new Image("imgs/user.png"));
+        imgviewuser.setFitHeight(30);
+        imgviewuser.setFitWidth(30);
+        userHbox.setMargin(imgviewuser,new Insets(0,10,0,0));
+        userHbox.getChildren().add(imgviewuser);
+        userHbox.setStyle("-fx-border-color: black ; -fx-border-width: 0 0 1px 0;");
         carros= Utilidades.leer();
         
-        listaVenta = new DoublyCircularLinkedList<>();
+        ObservableList<String> optionsAutos = FXCollections.observableArrayList("Ligeros","Motocicletas");      
+        cvautos.setItems(optionsAutos);
+        
+        ObservableList<String> optionsMarcas = FXCollections.observableArrayList(
+                "Chevrolet","Honda", "Ducati","Hyundai","Kawasaki", "Renault", "Suzuki", "Toyota", "Yamaha");      
+        cvmarcas.setItems(optionsMarcas);   
+        
+        ObservableList<Integer> optionsPreciosDesde = FXCollections.observableArrayList(
+                0,500,1000,1500,2000,2500,3000,3500,4000,5000,6000);      
+        cvpreciosdesde.setItems(optionsPreciosDesde);   
+        
+        ObservableList<Integer> optionsPreciosHasta = FXCollections.observableArrayList(
+                1000,1500,2000,2500,3000,3500,4000,5000,6000,7000,8000,9000,10000,20000);      
+        cvprecioshasta.setItems(optionsPreciosHasta); 
+        
+        ObservableList<Integer> optionsAniosDesde = FXCollections.observableArrayList(
+                2024,2023,2022,2021,2020,2019,2018,2017,2016,
+                2015,2014,2013,2012,2011,2010,2009,2008,2007,
+                2006,2005,2004,2003,2004,2003,2002,2001,2000,
+                1999,1998,1997,1996,1995,1994,1993,1992,1991);      
+        cvañosdesde.setItems(optionsAniosDesde); 
+        
+        ObservableList<Integer> optionsAniosHasta = FXCollections.observableArrayList(
+                2024,2023,2022,2021,2020,2019,2018,2017,2016,
+                2015,2014,2013,2012,2011,2010,2009,2008,2007,
+                2006,2005,2004,2003,2004,2003,2002,2001,2000,
+                1999,1998,1997,1996,1995,1994,1993,1992,1991);      
+        cvañoshasta.setItems(optionsAniosDesde); 
+        
         
         dibujar(carros);
     }    
 
-    @FXML
     private void filtrar(ActionEvent event) {
-        String cat = carFilter.getValue();
+        if(
+                cvañoshasta.getValue() == null || 
+                cvañosdesde.getValue() == null || 
+                cvprecioshasta.getValue() == null|| 
+                cvpreciosdesde.getValue() == null|| 
+                cvautos.getValue() == null|| 
+                cvmarcas.getValue() == null) 
+            return;
         
-        if(cat.equals("Filtro"))
-            //Muestra los carros en el orden de instanciación
-            dibujar(carros);
-        else
-        {
-            //Usando un comparador para modificar el orden de la lista carros
-        }
     }
     
     public boolean dibujar(ArrayList<Vehiculo> carros){
@@ -158,7 +191,18 @@ public class RootWindowController implements Initializable {
             vb.setMargin(lb1,new Insets(10,0,10,5));
             vb.setMargin(lb2,new Insets(10,0,10,5));
             vb.setStyle("-fx-border-color: gray; -fx-border-width: 0.5px; -fx-border-style: solid;");
+
             vb.getChildren().addAll(iv, lb1,lb2);
+            
+//            vb.setOnMouseEntered((MouseEvent event) -> {
+//                if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
+//                    vb.setStyle("-fx-background-color: #ff0000"); // Cambiar el color de fondo a rojo
+//                }
+//                else if (event.getEventType() == MouseEvent.MOUSE_EXITED) {
+//                    vb.setStyle("-fx-background-color: #ffffff"); // Restablecer el color de fondo a blanco
+//                }
+//            });
+            
             carrosfp.getChildren().add(vb);     
         }
         return true;
