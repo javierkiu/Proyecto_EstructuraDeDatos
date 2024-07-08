@@ -5,50 +5,87 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyecto_estructuradedatos.RootWindowController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyecto_estructuradedatos.RootWindowController">
    <children>
-      <HBox fx:id="mainHBox" layoutX="16.0" layoutY="16.0" prefHeight="376.0" prefWidth="569.0" spacing="5.0" style="-fx-border-color: grey;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <HBox fx:id="mainHBox" layoutX="16.0" layoutY="16.0" prefHeight="376.0" prefWidth="1200.0" spacing="5.0" style="-fx-border-color: grey;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>
+            <VBox fx:id="detailVBox" alignment="TOP_CENTER" prefHeight="478.0" prefWidth="271.0" spacing="5.0" style="-fx-border-color: grey;">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="39.0" prefWidth="269.0">
+                     <children>
+                        <Label fx:id="labeluser" prefHeight="43.0" prefWidth="103.0" />
+                        <ImageView fx:id="imgviewuser" fitHeight="43.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <VBox alignment="CENTER" prefHeight="217.0" prefWidth="269.0">
+                     <children>
+                        <Label fx:id="searchTxt1" alignment="CENTER" prefHeight="38.0" prefWidth="200.0" text=" Búsqueda" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="searchTxt" alignment="CENTER" prefHeight="35.0" prefWidth="215.0" text="Encuentra el auto de tus sueños" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <GridPane alignment="CENTER" prefHeight="156.0" prefWidth="269.0">
+                          <columnConstraints>
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <ComboBox fx:id="cvautos" onAction="#filtrar" prefHeight="35.0" prefWidth="115.0" promptText="Autos" />
+                              <ComboBox fx:id="cvmarcas" onAction="#filtrar" prefHeight="35.0" prefWidth="115.0" promptText="Marcas" GridPane.columnIndex="1" />
+                              <ComboBox fx:id="cvpreciosdesde" onAction="#filtrar" prefHeight="35.0" prefWidth="115.0" promptText="Precios desde" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cvprecioshasta" onAction="#filtrar" prefHeight="35.0" prefWidth="115.0" promptText="Precios hasta" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cvañosdesde" onAction="#filtrar" prefHeight="35.0" prefWidth="115.0" promptText="Años desde" GridPane.rowIndex="2" />
+                              <ComboBox fx:id="cvañoshasta" onAction="#filtrar" prefHeight="35.0" prefWidth="115.0" promptText="Años hasta" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+                  <Button fx:id="buyBtt" alignment="CENTER" mnemonicParsing="false" prefWidth="141.0" text="Comprar" />
+                  <Button fx:id="sellBtt" alignment="CENTER" mnemonicParsing="false" prefWidth="141.0" text="Vender" />
+               </children>
+            </VBox>
             <VBox fx:id="firstBox" prefHeight="376.0" prefWidth="425.0" HBox.hgrow="ALWAYS">
                <children>
-                  <FlowPane fx:id="optionsFPane" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" rowValignment="TOP">
-                     <children>
-                        <Button fx:id="buyBtt" alignment="CENTER" mnemonicParsing="false" prefWidth="141.0" text="Comprar" />
-                        <Button fx:id="sellBtt" alignment="CENTER" mnemonicParsing="false" prefWidth="141.0" text="Vender" />
-                     </children>
+                  <FlowPane fx:id="optionsFPane" alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
+                     <children>
+                        <Label prefHeight="28.0" prefWidth="202.0" text="Catálogo de vehículos" underline="true">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                     </children>
                   </FlowPane>
-                  <ScrollPane fx:id="carMenu" hbarPolicy="ALWAYS" prefHeight="300.0" prefWidth="200.0" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                  <ScrollPane prefHeight="628.0" prefWidth="902.0">
                      <content>
-                        <HBox fx:id="listHBox" alignment="CENTER" prefHeight="310.0" prefWidth="425.0" spacing="10.0">
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </HBox>
+                        <FlowPane fx:id="carrosfp" alignment="CENTER" columnHalignment="CENTER" prefHeight="611.0" prefWidth="902.0" />
                      </content>
                   </ScrollPane>
-               </children>
-            </VBox>
-            <VBox fx:id="detailVBox" prefHeight="200.0" prefWidth="150.0" spacing="5.0" style="-fx-border-color: grey;">
-               <children>
-                  <Label fx:id="searchTxt" alignment="CENTER" prefHeight="50.0" prefWidth="200.0" text=" Búsqueda" textAlignment="CENTER">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <ComboBox fx:id="carFilter" onAction="#filtrar" prefWidth="140.0" promptText="Filtro">
-                     <VBox.margin>
-                        <Insets left="5.0" right="5.0" />
-                     </VBox.margin>
-                  </ComboBox>
                </children>
             </VBox>
          </children>

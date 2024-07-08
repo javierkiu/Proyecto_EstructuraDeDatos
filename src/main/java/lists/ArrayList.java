@@ -1,5 +1,6 @@
 package lists;
 
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.ListIterator;
@@ -8,7 +9,9 @@ import java.util.ListIterator;
  *
  * @author JAVIER
  */
-public class ArrayList<E> implements List<E>{
+public class ArrayList<E> implements List<E>, Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     private E[] elements = null; //arreglo de elementos genericos
     private int capacity = 100;

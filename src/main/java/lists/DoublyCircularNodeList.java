@@ -4,11 +4,15 @@
  */
 package lists;
 
+import java.io.Serializable;
+
 /**
  *
  * @author JAVIER
  */
-public class DoublyCircularNodeList<E> {
+public class DoublyCircularNodeList<E> implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     private E content;
     private DoublyCircularNodeList next;
     private DoublyCircularNodeList previous;

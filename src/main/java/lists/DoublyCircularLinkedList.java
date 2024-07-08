@@ -4,21 +4,21 @@
  */
 package lists;
 
+import java.io.Serializable;
 import java.util.Iterator;
 
 /**
  *
  * @author JAVIER
  */
-public class DoublyCircularLinkedList<E> implements List<E>{
+public class DoublyCircularLinkedList<E> implements Serializable {
     
-    private DoublyCircularNodeList last;
+    private DoublyCircularNodeList<E> last;
 
     public DoublyCircularLinkedList() {
         this.last = null;
     }
 
-    @Override
     public boolean addLast(E e) {
         if(e == null) return false;
         DoublyCircularNodeList nd = new DoublyCircularNodeList(e);
@@ -35,26 +35,33 @@ public class DoublyCircularLinkedList<E> implements List<E>{
         return true;          
     }
 
-    @Override
-    public boolean addFirst(E e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean removeElement(E e){
+        if(isEmpty()) return false;
+        DoublyCircularNodeList<E> nd = last.getNext();
+        do{
+            if(nd.getcontent().equals(e)){
+                nd.getPrevious().setNext(nd.getNext());
+                nd.getNext().setPrevious(nd.getPrevious());
+                return true;
+            }
+            nd = nd.getNext();
+        }while(nd!=last.getNext());
+        return false;
     }
-
-    @Override
-    public E removeFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
+    
     public E removeLast() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(isEmpty()) return null;
+        
+        E element = last.getcontent();
+        last.getPrevious().setNext(last.getNext());
+        last.getNext().setPrevious(last.getPrevious());
+        return element;
     }
 
-    @Override
     public int size() {
         if(isEmpty()) return 0;
         int n = 0;
-        DoublyCircularNodeList nd = last;
+        DoublyCircularNodeList<E> nd = last;
         do{
             n+=1;
             nd= nd.getNext();
@@ -62,44 +69,8 @@ public class DoublyCircularLinkedList<E> implements List<E>{
         return n;
     }
 
-    @Override
     public boolean isEmpty() {
         return last == null;
-    }
-
-    @Override
-    public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean add(int index, E element) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public E remove(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public E get(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public E set(int index, E element) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<E> findIntersection(List<E> another) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Iterator<E> iterator() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
@@ -118,9 +89,7 @@ public class DoublyCircularLinkedList<E> implements List<E>{
         return sb.toString();
     }
 
-    public DoublyCircularNodeList getLast() {
+    public DoublyCircularNodeList<E> getLast() {
         return last;
     }
-    
-    
 }
