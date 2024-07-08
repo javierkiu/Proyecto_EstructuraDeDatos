@@ -172,7 +172,6 @@ public class RootWindowController implements Initializable {
         String st2;
 
         for(Vehiculo v : carros){
-            System.out.println("imgs/"+v.getFotos().getLast().getcontent()+".jpg");
             vb = new VBox();
             iv = new ImageView(new Image("imgs/"+v.getFotos().getLast().getcontent()+".jpg"));
             st1 = v.getMarca().getNombre() + " " + v.getModelo();
@@ -183,7 +182,6 @@ public class RootWindowController implements Initializable {
             lb2 = new Label(st2);
             lb2.setStyle("-fx-font-weight: bold;");
 
-            System.out.println(iv.getImage().getUrl());
             iv.setFitHeight(150);
             iv.setFitWidth(225);
             Insets margin = new Insets(10, 20, 10, 20);

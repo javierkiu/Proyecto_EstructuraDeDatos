@@ -1,6 +1,2 @@
-juancitopro,Juan,Perez,juan@gmail.com,juan123
-jajorodr,Javier,Rodriguez,javier@gmail.com,12345
-pedrito,pedro,lopez,pedro@gmail.com,ped123
-hector,hector,rivas,hectorsito@gmail.com,4321
-sergiioo,sergio,lopez,sergi@outlook.com,serio12
- , , , , 
+jajorodr,javier,rodriguez,javier@gmail.com,1234
+juancito,juan,perez,juan@gmail.com,1234

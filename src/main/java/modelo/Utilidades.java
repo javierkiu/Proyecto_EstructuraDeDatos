@@ -22,6 +22,14 @@ import lists.*;
  * @author JAVIER
  */
 public class Utilidades {
+    public static void escribirListaUsuarios(ArrayList<Usuario> usuarios){
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("usuarios.ser"))){
+            oos.writeObject(usuarios);
+        }catch(IOException e){
+            e.printStackTrace();
+        };    
+    }
+    
     public static boolean registrarUsuario(Usuario us){
         try(BufferedWriter bf = new BufferedWriter(new FileWriter("src/main/resources/files/users.txt",true))){
             String line = us.getUsuario() + "," + us.getNombre() + "," + us.getApellido() +"," +  us.getMail() + "," + us.getContrasena();
@@ -30,6 +38,16 @@ public class Utilidades {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("usuarios.ser"))){
+            ArrayList<Usuario> usuarios = (ArrayList<Usuario>) ois.readObject();
+            usuarios.addLast(us);
+            Utilidades.escribirListaUsuarios(usuarios);
+        }catch(IOException e){
+            
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        
         return true;
     }
     public static boolean verificarUsuario(String usuario){
