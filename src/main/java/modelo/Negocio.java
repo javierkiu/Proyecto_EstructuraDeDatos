@@ -57,6 +57,15 @@ public class Negocio {
         }
         return resultado;
     }
+    public List<Auto> buscarPorRangoDeAños(int añoMin, int añoMax) {
+        List<Auto> resultado = new LinkedList<>();
+        for (Auto auto : autosEnVenta) {
+            if (auto.getAño() >= añoMin && auto.getAño() <= añoMax) {
+                resultado.addFirst(auto);
+            }
+        }
+        return resultado;
+    }
     public List<Auto> filtrarPorAccidentesGravedad(String gravedad) {
         List<Auto> resultado = new LinkedList<>();
         for (Auto auto : autosEnVenta) {
