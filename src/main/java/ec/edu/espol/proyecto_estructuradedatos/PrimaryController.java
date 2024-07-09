@@ -14,6 +14,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import modelo.*;
 import lists.*;
 
@@ -23,7 +27,11 @@ import lists.*;
  * @author JAVIER
  */
 public class PrimaryController implements Initializable {
+    private Stage stage;
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
     @FXML
     private Button iniSesBt;
     @FXML
@@ -62,13 +70,20 @@ public class PrimaryController implements Initializable {
             a.show();
         }
         else{
-            Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-            a.setContentText("Sesion iniciada!!");
-            a.show();
+            FXMLLoader loader = new  FXMLLoader(getClass().getResource("usuario.fxml"));
+            Parent root = loader.load();
             
-            
-            App.setRoot("RootWindow");
-            // CAMBIAR DE ESCENARIO
+            UsuarioController controller = loader.getController();
+
+            Scene principal = new Scene(root,930,570);
+            Stage newStage = new Stage();
+            newStage.setScene(principal);
+            newStage.show();
+            controller.setStage(newStage);
+            controller.initializeData(emailLog.getText());
+
+            Stage currentStage = (Stage) emailLog.getScene().getWindow();
+            currentStage.close();
         }
         
     }

@@ -13,11 +13,14 @@ import java.io.IOException;
  * JavaFX App
  */
 public class App extends Application {
+    
 
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
+        Utilidades.escribirListaUsuarios(new ArrayList<Usuario>());
+        Utilidades.generarVehiculos();
         scene = new Scene(loadFXML("primary"), 640, 580);
         stage.setScene(scene);
         stage.show();

@@ -4,13 +4,21 @@
  */
 package ec.edu.espol.proyecto_estructuradedatos;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -35,18 +43,47 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import lists.DoublyCircularLinkedList;
 import lists.DoublyCircularNodeList;
-import lists.DoublyLinkedList;
-import modelo.Vehiculo;
+import lists.*;
+import modelo.*;
 
 /**
  * FXML Controller class
  *
  * @author levin
  */
+
 public class RootWindowController implements Initializable {
 
+    static void initializeData(TextField emailLog) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    private Stage stage;
+    @FXML
+    private Label searchTxt1;
+    @FXML
+    private ComboBox<String> cvautos;
+    @FXML
+    private ComboBox<String> cvmarcas;
+    @FXML
+    private ComboBox<Integer> cvpreciosdesde;
+    @FXML
+    private ComboBox<Integer> cvprecioshasta;
+    @FXML
+    private ComboBox<Integer> cvañosdesde;
+    @FXML
+    private ComboBox<Integer> cvañoshasta;
+    @FXML
+    private HBox userHbox;
+    @FXML
+    private Button Buscar;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
     @FXML
     private HBox mainHBox;
     @FXML
@@ -54,113 +91,211 @@ public class RootWindowController implements Initializable {
     @FXML
     private FlowPane optionsFPane;
     @FXML
-    private Button buyBtt;
-    @FXML
-    private Button sellBtt;
-    @FXML
-    private ScrollPane carMenu;
-    @FXML
     private Label searchTxt;
-    @FXML
     private ComboBox<String> carFilter;
-    @FXML
     private HBox listHBox;
-    
-    private DoublyCircularLinkedList<Vehiculo> carros;
-    
-    private DoublyCircularLinkedList<Vehiculo> listaVenta;
-    
     @FXML
     private VBox detailVBox;
-
-    /**
-     * Initializes the controller class.
-     */
+    
+    
+    private ArrayList<Vehiculo> carros;     
+    @FXML
+    private FlowPane carrosfp;
+    private String user;
+    
+    public void initializeData(String user){
+        Usuario us = Utilidades.obtenerDatosUsuario(user);
+        Label lb = new Label(us.getNombre() + " " + us.getApellido());
+        lb.setStyle("-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;");
+        userHbox.getChildren().add(lb);
+        this.user = user;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Negocio ng = new Negocio();
+        ng.setAutosEnVenta(carros);
+                
+                
+        ImageView imgviewuser = new ImageView(new Image("imgs/user.png"));
+        imgviewuser.setFitHeight(30);
+        imgviewuser.setFitWidth(30);
+        userHbox.setMargin(imgviewuser,new Insets(0,10,0,0));
+        userHbox.getChildren().add(imgviewuser);
+        userHbox.setStyle("-fx-border-color: black ; -fx-border-width: 0 0 1px 0;-fx-background-color:  #670010");
         
-        carros = new DoublyCircularLinkedList<>();
-        listaVenta = new DoublyCircularLinkedList<>();
+        carros= Utilidades.leer();
         
-        //Se llena la lista de carros
+        ObservableList<String> optionsAutos = FXCollections.observableArrayList("Ligero","Motocicleta");      
+        cvautos.setItems(optionsAutos);
         
-        dibujarLista(carros);
+        ObservableList<String> optionsMarcas = FXCollections.observableArrayList(
+                "Chevrolet","Honda", "Ducati","Hyundai","Kawasaki", "Renault", "Suzuki", "Toyota", "Yamaha");      
+        cvmarcas.setItems(optionsMarcas);   
         
-        // TODO
+        ObservableList<Integer> optionsPreciosDesde = FXCollections.observableArrayList(
+                0,500,1000,1500,2000,2500,3000,3500,4000,5000,6000);      
+        cvpreciosdesde.setItems(optionsPreciosDesde);   
+        
+        ObservableList<Integer> optionsPreciosHasta = FXCollections.observableArrayList(
+                1000,1500,2000,2500,3000,3500,4000,5000,6000,7000,8000,9000,10000,20000);      
+        cvprecioshasta.setItems(optionsPreciosHasta); 
+        
+        ObservableList<Integer> optionsAniosDesde = FXCollections.observableArrayList(
+                2024,2023,2022,2021,2020,2019,2018,2017,2016,
+                2015,2014,2013,2012,2011,2010,2009,2008,2007,
+                2006,2005,2004,2003,2004,2003,2002,2001,2000,
+                1999,1998,1997,1996,1995,1994,1993,1992,1991);      
+        cvañosdesde.setItems(optionsAniosDesde); 
+        
+        ObservableList<Integer> optionsAniosHasta = FXCollections.observableArrayList(
+                2024,2023,2022,2021,2020,2019,2018,2017,2016,
+                2015,2014,2013,2012,2011,2010,2009,2008,2007,
+                2006,2005,2004,2003,2004,2003,2002,2001,2000,
+                1999,1998,1997,1996,1995,1994,1993,1992,1991);      
+        cvañoshasta.setItems(optionsAniosHasta); 
+        
+        
+        Utilidades.dibujar(carros,carrosfp);
     }    
 
     @FXML
     private void filtrar(ActionEvent event) {
-        String cat = carFilter.getValue();
+        ArrayList<Vehiculo> result = new ArrayList<>();
         
-        if(cat.equals("Filtro"))
-            //Muestra los carros en el orden de instanciación
-            dibujarLista(carros);
-        else
-        {
-            //Usando un comparador para modificar el orden de la lista carros
-        }
-    }
-    
-    
-    public void dibujarLista(DoublyCircularLinkedList<Vehiculo> carros)
-    {
-        Platform.runLater(() -> {
-            listHBox.getChildren().clear();
-        });
-        
-        //Verificamos que la lista no esté vacía
-        if(!carros.isEmpty())
-        {
-            //Problema: Nunca dibuja el vehículo con índice last
-            //Recorremos los elementos para poder obtener las imágenes
-            for(DoublyCircularNodeList<Vehiculo> v = carros.getLast().getNext();v != carros.getLast(); v = v.getNext())
-            {
-                ImageView im = new ImageView("img/"+v.getcontent().getFotos().getLast().getNext().getcontent().toString());
-                //Cada imagen tendrá un manejador para que al darle click nos muestre la información del carro
-                im.addEventHandler(MouseEvent.MOUSE_CLICKED,(MouseEvent t) -> { 
-                    Platform.runLater(() -> {
-                        verCarro(im,t.getSource().toString());
-                        Button b1 = new Button("Regresar");
-                        b1.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent t1) -> {dibujarLista(carros);});
-                        detailVBox.getChildren().addAll(b1);
-                    });
-                });
-                listHBox.getChildren().addAll(im);
+        for(Vehiculo v : carros){
+            boolean matches = true;
+            
+            if(cvautos.getValue() != null && !v.getPeso().equalsIgnoreCase(cvautos.getValue())){
+                matches = false;
             }
-        }
-        else
-        {
-            Label l = new Label("No existen vehículos");
-            l.setTextFill(Paint.valueOf("Black"));
-            l.setPrefSize(500, 500);
-            Platform.runLater(() -> {
-                listHBox.getChildren().addAll(l);
+            if(cvmarcas.getValue() != null && !v.getMarca().getNombre().equalsIgnoreCase(cvmarcas.getValue())){
+                matches = false;
+            }
+            if(cvpreciosdesde.getValue() != null && (v.getPrecio() < cvpreciosdesde.getValue())){
+                matches = false;
+            }
+            if(cvprecioshasta.getValue() != null && (v.getPrecio() > cvprecioshasta.getValue())){
+                matches = false;
+            }
+            if(cvañosdesde.getValue() != null && (v.getAño() < cvañosdesde.getValue())){
+                matches = false;
+            }
+            if(cvañoshasta.getValue() != null && (v.getAño() > cvañoshasta.getValue())){
+                matches = false;
+            } 
+            if(matches){
+                result.addLast(v);
+            }             
+
+        carrosfp.getChildren().clear();
+        Utilidades.dibujar(result,carrosfp);
+    }}
+    
+    
+    public boolean dibujar(ArrayList<Vehiculo> carros){
+        if(carros.isEmpty()) return false;
+        VBox vb;
+        ImageView iv;
+        Label lb1; 
+        Label lb2;
+        String st1;
+        String st2;
+        for(Vehiculo v : carros){
+            vb = new VBox();
+            iv = new ImageView(new Image("imgs/"+v.getFotos().getLast().getcontent()+".jpg"));
+            st1 = v.getMarca().getNombre() + " " + v.getModelo();
+            lb1 = new Label(st1.toUpperCase());
+            lb1.setStyle("-fx-font-weight: bold;");
+           
+            st2 = Double.toString(v.getPrecio()) + "$";
+            lb2 = new Label(st2);
+            lb2.setStyle("-fx-font-weight: bold;");
+            iv.setFitHeight(150);
+            iv.setFitWidth(225);
+            Insets margin = new Insets(10, 20, 10, 20);
+            carrosfp.setMargin(vb,margin);
+            vb.setMargin(lb1,new Insets(10,0,10,5));
+            vb.setMargin(lb2,new Insets(10,0,10,5));
+            vb.setStyle("-fx-border-color: gray; -fx-border-width: 0.5px; -fx-border-style: solid;");
+
+            vb.getChildren().addAll(iv, lb1,lb2);
+
+            vb.setOnMouseClicked(event -> {
+                System.out.println("aaa al mneos funcionaaaa");
+                generarVistaCarro(v);
             });
         }
+        return true;
+    }
+    public void generarVistaCarro(Vehiculo v) 
+    {
+        Platform.runLater(()  -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("VistaCarro.fxml"));
+                Parent root = loader.load();
+                
+                VistaCarroController controller = loader.getController();
+                controller.setCarro(v);
+                controller.setVistaAutos(stage);
+                
+                controller.generar();
+                
+                Scene principal = new Scene(root,1200,700);
+                Stage newStage = new Stage();
+                
+                newStage.setScene(principal);
+                newStage.show();
+                controller.setStage(newStage);
+                Stage currentStage = (Stage) cvautos.getScene().getWindow();
+                currentStage.close();
+                
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+                stage.hide();
+        });
     }
     
+    
     //Este método nos permite ver un carro específico
-    public void verCarro(ImageView im,String s)
-    {
-        Platform.runLater(() -> {
-            listHBox.getChildren().clear();
-            listHBox.getChildren().addAll(im);
+//    public void verCarro(VBox vb)
+//    {
+//        Platform.runLater(() -> {
+//            listHBox.getChildren().clear();
+//            listHBox.getChildren().addAll(im);
+//
+//            detailVBox.getChildren().clear();
+//            Label l1 = new Label("Detalle");
+//            detailVBox.getChildren().addAll(l1);
+//
+//            //A partir del nombre de la imagen encontramos el vehículo que la contiene
+//            for(DoublyCircularNodeList<Vehiculo> v = carros.getLast().getNext();v != carros.getLast(); v = v.getNext())
+//            {
+//                if(v.getcontent().getFotos().getLast().getNext().equals(s))
+//                {
+//                    TextField td = new TextField(v.getcontent().getFotos().getLast().getNext().getcontent().toString());
+//                    detailVBox.getChildren().addAll(td);
+//                }
+//            }
+//        });
+//    }
 
-            detailVBox.getChildren().clear();
-            Label l1 = new Label("Detalle");
-            detailVBox.getChildren().addAll(l1);
+    @FXML
+    private void volver(MouseEvent event) throws IOException {
+            FXMLLoader loader = new  FXMLLoader(getClass().getResource("usuario.fxml"));
+            Parent root = loader.load();
+            
+            UsuarioController controller = loader.getController();
 
-            //A partir del nombre de la imagen encontramos el vehículo que la contiene
-            for(DoublyCircularNodeList<Vehiculo> v = carros.getLast().getNext();v != carros.getLast(); v = v.getNext())
-            {
-                if(v.getcontent().getFotos().getLast().getNext().equals(s))
-                {
-                    TextField td = new TextField(v.getcontent().getFotos().getLast().getNext().getcontent().toString());
-                    detailVBox.getChildren().addAll(td);
-                }
-            }
-        });
+            Scene principal = new Scene(root,930,570);
+            Stage newStage = new Stage();
+            newStage.setScene(principal);
+            newStage.show();
+            controller.initializeData(user);
+
+            Stage currentStage = (Stage) cvautos.getScene().getWindow();
+            currentStage.close();
     }
     
     

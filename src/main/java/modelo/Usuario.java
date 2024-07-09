@@ -4,16 +4,22 @@
  */
 package modelo;
 
+import java.io.Serializable;
+import lists.ArrayList;
+
 /**
  *
  * @author JAVIER
  */
-public class Usuario {
+public class Usuario implements Serializable{
+    private static final long serialVersionUID = 1L;
+    
     private String nombre;
     private String apellido;
     private String usuario;
     private String contrasena;
     private String mail;
+    private ArrayList<Vehiculo> enVenta;
 
     public String getNombre() {
         return nombre;
@@ -41,6 +47,7 @@ public class Usuario {
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.mail = mail;
+        this.enVenta = new ArrayList<>();
     }
     
     

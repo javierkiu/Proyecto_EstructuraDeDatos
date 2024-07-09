@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" prefHeight="570.0" prefWidth="930.0" style="-fx-border-color: #3c0000; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyecto_estructuradedatos.UsuarioController">
+   <children>
+      <Pane prefHeight="126.0" prefWidth="923.0" style="-fx-background-color: #670010;">
+         <children>
+            <ImageView fx:id="imgview" fitHeight="72.0" fitWidth="158.0" layoutX="51.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../imgs/patiotuerca.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="bienvenida" alignment="CENTER" layoutX="486.0" layoutY="16.0" prefHeight="71.0" prefWidth="397.0" textFill="WHITE">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane prefHeight="491.0" prefWidth="923.0">
+         <children>
+            <Label layoutX="378.0" layoutY="86.0" text="¿Qué desea hacer?" textFill="#1c0000">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+            <VBox fx:id="verventas" alignment="CENTER" layoutX="152.0" layoutY="175.0" onMouseClicked="#iraventas" prefHeight="165.0" prefWidth="135.0" style="-fx-border-color: gray;">
+               <children>
+                  <Label text="Ver ventas" textFill="#1c0000">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ImageView fitHeight="120.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../imgs/user.png" />
+                     </image></ImageView>
+               </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </VBox>
+            <VBox fx:id="comprar" alignment="CENTER" layoutX="400.0" layoutY="175.0" onMouseClicked="#iracatalogo" prefHeight="165.0" prefWidth="135.0" style="-fx-border-color: gray; -fx-border-width: 0.5;">
+               <children>
+                  <Label text="Comprar" textFill="#1c0000">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ImageView fitHeight="98.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../imgs/buscar.png" />
+                     </image></ImageView>
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </VBox>
+            <VBox fx:id="vender" alignment="CENTER" layoutX="644.0" layoutY="175.0" onMouseClicked="#iravender" prefHeight="165.0" prefWidth="135.0" style="-fx-border-color: gray; -fx-border-width: 0.5;">
+               <children>
+                  <Label text="Vender" textFill="#1c0000">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ImageView fitHeight="98.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../imgs/vender.png" />
+                     </image></ImageView>
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</VBox>

@@ -17,58 +17,65 @@ import lists.*;
  * @author Steven Morocho
  */
 public class Negocio {
-    private LinkedList<Auto> autosEnVenta;
+    private ArrayList<Vehiculo> autosEnVenta;
     public Negocio(){
-        autosEnVenta=new LinkedList();
+        autosEnVenta=new ArrayList();
     }
-    public void agregarAuto(Auto a){
+    public void agregarAuto(Vehiculo a){
         autosEnVenta.addFirst(a);
     }
+
+    public void setAutosEnVenta(ArrayList<Vehiculo> autosEnVenta) {
+        this.autosEnVenta = autosEnVenta;
+    }
+    
     public void mostrarAutos(){
         while(!autosEnVenta.isEmpty())
-            for(Auto a:autosEnVenta){
+            for(Vehiculo a:autosEnVenta){
                 System.out.println(a);
             }
     }
-    public List<Auto> buscarPorMarca(String marca) {
-        List<Auto> resultado = new LinkedList<>();
-        for (Auto auto : autosEnVenta) {
-            if (auto.getMarca().equalsIgnoreCase(marca)) {
+    public ArrayList<Vehiculo> buscarPorMarca(String marca) {
+        ArrayList<Vehiculo> resultado = new ArrayList<>();
+        for (Vehiculo auto : autosEnVenta) {
+            if (auto.getMarca().equals(marca)) {
                 resultado.addFirst(auto);
             }
         }
         return resultado;
     }
-    public List<Auto> buscarPorModelo(String modelo) {
-        List<Auto> resultado = new LinkedList<>();
-        for (Auto auto : autosEnVenta) {
+    public ArrayList<Vehiculo> buscarPorModelo(String modelo) {
+        ArrayList<Vehiculo> resultado = new ArrayList<>();
+        for (Vehiculo auto : autosEnVenta) {
             if (auto.getModelo().equalsIgnoreCase(modelo)) {
                 resultado.addFirst(auto);
             }
         }
         return resultado;
     }
-    public List<Auto> buscarPorRangoDePrecio(int precioMin, int precioMax) {
-        List<Auto> resultado = new LinkedList<>();
-        for (Auto auto : autosEnVenta) {
+    public ArrayList<Vehiculo> buscarPorRangoDePrecio(int precioMin, int precioMax) {
+        ArrayList<Vehiculo> resultado = new ArrayList<>();
+        for (Vehiculo auto : autosEnVenta) {
             if (auto.getPrecio() >= precioMin && auto.getPrecio() <= precioMax) {
                 resultado.addFirst(auto);
             }
         }
         return resultado;
     }
-    public List<Auto> buscarPorRangoDeAños(int añoMin, int añoMax) {
-        List<Auto> resultado = new LinkedList<>();
-        for (Auto auto : autosEnVenta) {
+    
+    public ArrayList<Vehiculo> buscarPorRangoDeAños(int añoMin, int añoMax) {
+        ArrayList<Vehiculo> resultado = new ArrayList<>();
+        for (Vehiculo auto : autosEnVenta) {
             if (auto.getAño() >= añoMin && auto.getAño() <= añoMax) {
                 resultado.addFirst(auto);
             }
         }
         return resultado;
     }
-    public List<Auto> filtrarPorAccidentesGravedad(String gravedad) {
-        List<Auto> resultado = new LinkedList<>();
-        for (Auto auto : autosEnVenta) {
+    
+    public ArrayList<Vehiculo> filtrarPorAccidentesGravedad(String gravedad) {
+        ArrayList<Vehiculo> resultado = new ArrayList<>();
+        for (Vehiculo auto : autosEnVenta) {
             for (Accidente accidente : auto.getAccidentes()) {
                 if (accidente.getGravedad().equalsIgnoreCase(gravedad)) {
                     resultado.addFirst(auto);
@@ -78,9 +85,9 @@ public class Negocio {
         }
         return resultado;
     }
-    public List<Auto> filtrarPorAccidentesAño(int año) {
-        List<Auto> resultado = new LinkedList<>();
-        for (Auto auto : autosEnVenta) {
+    public ArrayList<Vehiculo> filtrarPorAccidentesAño(int año) {
+        ArrayList<Vehiculo> resultado = new ArrayList<>();
+        for (Vehiculo auto : autosEnVenta) {
             for (Accidente accidente : auto.getAccidentes()) {
                 if (accidente.getAño()==año) {
                     resultado.addFirst(auto);
@@ -90,18 +97,19 @@ public class Negocio {
         }
         return resultado;
     }
-    public List<Auto> filtrarPorMantenimientosAño(int año) {
-        List<Auto> resultado = new LinkedList<>();
-        for (Auto auto : autosEnVenta) {
-            for (Mantenimiento m : auto.getMantenimientos()) {
-                if (m.getAño()==año) {
-                    resultado.addFirst(auto);
-                    break;
-                }
-            }
-        }
-        return resultado;
-    }
+//    public ArrayList<Vehiculo> filtrarPorMantenimientosAño(int año) {
+//        ArrayList<Vehiculo> resultado = new ArrayList<>();
+//        for (Vehiculo auto : autosEnVenta) {
+//            for (Mantenimiento m : auto.getMantenimientos()) {
+//                if (m.getAño()==año) {
+//                    resultado.addFirst(auto);
+//                    break;
+//                }
+//            }
+//        }
+//        return resultado;
+//    }
+    
     public void guardarDatos(String archivo) throws IOException {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivo))) {
             oos.writeObject(autosEnVenta);
@@ -109,7 +117,7 @@ public class Negocio {
     }
     public void cargarDatos(String archivo) throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))) {
-            autosEnVenta = (LinkedList<Auto>) ois.readObject();
+            autosEnVenta = (ArrayList<Vehiculo>) ois.readObject();
         }
     }
 }

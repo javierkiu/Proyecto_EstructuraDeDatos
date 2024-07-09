@@ -11,6 +11,8 @@ import java.io.Serializable;
  * @author Steven Morocho
  */
 public class Accidente implements Comparable<Accidente>, Serializable{
+
+    private static final long serialVersionUID = 1L;
     private String descripcion;
     private int año;
     private String gravedad;
