@@ -96,12 +96,24 @@ public class Vehiculo implements Serializable {
     public String getUbicacionActualVehiculo() {return ubicacionActualVehiculo;}
     public String getEstado() {return estado;}
     public String getPlaca() {return placa;}
+    public String getTransmisión() {return transmisión;}
     public DoublyCircularLinkedList<String> getFotos() {return fotos;}
     public ArrayList<Accidente> getAccidentes() {return accidentes;}
     
     @Override
     public String toString() {
-        return "Vehiculo{" + "precio=" + precio + ", marca=" + marca + ", modelo=" + modelo + ", a\u00f1o=" + año + ", kilometraje=" + kilometraje + ", ventas=" + ventas + ", placa=" + placa + '}';
+        return "Marca: " + getMarca().getNombre().toUpperCase() + "\n" +  
+                    "Modelo: " + getModelo().toUpperCase() + "\n" +
+                    "Año: " + getAño() + "\n" +
+                    "Kilometraje: " + getKilometraje() + "\n" +
+                    "Ventas: " + getVentas() + "\n" +
+                    "Motor: " + getMotor() + "\n" +
+                    //"Transmisión: " + getTransmisión() + "\n"+
+                    "Peso: " + getPeso().toUpperCase() + "\n" +
+                    //"Ubicación Actual: " + getUbicacionActualVehiculo() + "\n" +
+                    "Estado: " + getEstado().toUpperCase() + "\n" +
+                    "Placa: " + getPlaca() + "\n" +
+                    "Precio: " + getPrecio() + "\n";
     }
     
     

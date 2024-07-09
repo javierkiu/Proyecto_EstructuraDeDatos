@@ -4,6 +4,7 @@
  */
 package ec.edu.espol.proyecto_estructuradedatos;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -12,9 +13,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -192,6 +196,10 @@ public class RootWindowController implements Initializable {
 
             vb.getChildren().addAll(iv, lb1,lb2);
             
+            vb.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent t1) -> {
+                generarVistaCarro(v);
+            });
+            
 //            vb.setOnMouseEntered((MouseEvent event) -> {
 //                if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
 //                    vb.setStyle("-fx-background-color: #ff0000"); // Cambiar el color de fondo a rojo
@@ -263,8 +271,40 @@ public class RootWindowController implements Initializable {
 //        }
 //    }
     
+    public void generarVistaCarro(Vehiculo v) 
+    {
+        Platform.runLater(()  -> {
+            
+            try {
+                
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("VistaCarro.fxml"));
+                Parent root = loader.load();
+                
+                VistaCarroController controller = loader.getController();
+                controller.setCarro(v);
+                controller.setVistaAutos(stage);
+                
+                controller.generar();
+                
+                Scene principal = new Scene(root,1200,700);
+                
+                Stage newStage = new Stage();
+                newStage.setScene(principal);
+                newStage.show();
+                controller.setStage(newStage);
+                
+                
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            
+                stage.hide();
+        });
+    }
+    
+    
     //Este método nos permite ver un carro específico
-//    public void verCarro(ImageView im,String s)
+//    public void verCarro(VBox vb)
 //    {
 //        Platform.runLater(() -> {
 //            listHBox.getChildren().clear();
