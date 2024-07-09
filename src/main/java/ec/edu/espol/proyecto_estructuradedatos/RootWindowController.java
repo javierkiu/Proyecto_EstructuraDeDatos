@@ -187,73 +187,51 @@ public class RootWindowController implements Initializable {
             if(matches){
                 result.addLast(v);
             }             
-            vb.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent t1) -> {
-                generarVistaCarro(v);
-            });
-            
-//            vb.setOnMouseEntered((MouseEvent event) -> {
-//                if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
-//                    vb.setStyle("-fx-background-color: #ff0000"); // Cambiar el color de fondo a rojo
-//                }
-//                else if (event.getEventType() == MouseEvent.MOUSE_EXITED) {
-//                    vb.setStyle("-fx-background-color: #ffffff"); // Restablecer el color de fondo a blanco
-//                }
-//            });
-            
-            carrosfp.getChildren().add(vb);     
-        }
+
         carrosfp.getChildren().clear();
         Utilidades.dibujar(result,carrosfp);
-    }
+    }}
     
+    
+    public boolean dibujar(ArrayList<Vehiculo> carros){
+        if(carros.isEmpty()) return false;
+        VBox vb;
+        ImageView iv;
+        Label lb1; 
+        Label lb2;
+        String st1;
+        String st2;
+        for(Vehiculo v : carros){
+            vb = new VBox();
+            iv = new ImageView(new Image("imgs/"+v.getFotos().getLast().getcontent()+".jpg"));
+            st1 = v.getMarca().getNombre() + " " + v.getModelo();
+            lb1 = new Label(st1.toUpperCase());
+            lb1.setStyle("-fx-font-weight: bold;");
+           
+            st2 = Double.toString(v.getPrecio()) + "$";
+            lb2 = new Label(st2);
+            lb2.setStyle("-fx-font-weight: bold;");
+            iv.setFitHeight(150);
+            iv.setFitWidth(225);
+            Insets margin = new Insets(10, 20, 10, 20);
+            carrosfp.setMargin(vb,margin);
+            vb.setMargin(lb1,new Insets(10,0,10,5));
+            vb.setMargin(lb2,new Insets(10,0,10,5));
+            vb.setStyle("-fx-border-color: gray; -fx-border-width: 0.5px; -fx-border-style: solid;");
 
-    
-//    public void dibujarLista(DoublyCircularLinkedList<Vehiculo> carros)
-//    {
-//        Platform.runLater(() -> {
-//            listHBox.getChildren().clear();
-//        });
-//        
-//        //Verificamos que la lista no esté vacía
-//        if(!carros.isEmpty())
-//        {
-//            //Problema: Nunca dibuja el vehículo con índice last
-//            //Recorremos los elementos para poder obtener las imágenes
-//            for(DoublyCircularNodeList<Vehiculo> v = carros.getLast().getNext();v != carros.getLast(); v = v.getNext())
-//            {
-//                ImageView im = new ImageView("imgs/"+v.getcontent().getFotos().getLast().getNext().getcontent().toString());
-//                //Cada imagen tendrá un manejador para que al darle click nos muestre la información del carro
-//                im.addEventHandler(MouseEvent.MOUSE_CLICKED,(MouseEvent t) -> { 
-//                    Platform.runLater(() -> {
-//                        verCarro(im,t.getSource().toString());
-//                        Button b1 = new Button("Regresar");
-//                        b1.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent t1) -> {dibujarLista(carros);});
-//                        detailVBox.getChildren().addAll(b1);
-//                    });
-//                });
-//                listHBox.getChildren().addAll(im);
-//                System.out.println("HOLAAAAAAAAAAA");
-//                listHBox.getChildren().addAll(new Label("holaaa"));
-//
-//            }
-//        }
-//        else
-//        {
-//            Label l = new Label("No existen vehículos");
-//            l.setTextFill(Paint.valueOf("Black"));
-//            l.setPrefSize(500, 500);
-//            Platform.runLater(() -> {
-//                listHBox.getChildren().addAll(l);
-//            });
-//        }
-//    }
-    
+            vb.getChildren().addAll(iv, lb1,lb2);
+
+            vb.setOnMouseClicked(event -> {
+                System.out.println("aaa al mneos funcionaaaa");
+                generarVistaCarro(v);
+            });
+        }
+        return true;
+    }
     public void generarVistaCarro(Vehiculo v) 
     {
         Platform.runLater(()  -> {
-            
             try {
-                
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("VistaCarro.fxml"));
                 Parent root = loader.load();
                 
@@ -264,17 +242,17 @@ public class RootWindowController implements Initializable {
                 controller.generar();
                 
                 Scene principal = new Scene(root,1200,700);
-                
                 Stage newStage = new Stage();
+                
                 newStage.setScene(principal);
                 newStage.show();
                 controller.setStage(newStage);
-                
+                Stage currentStage = (Stage) cvautos.getScene().getWindow();
+                currentStage.close();
                 
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            
                 stage.hide();
         });
     }

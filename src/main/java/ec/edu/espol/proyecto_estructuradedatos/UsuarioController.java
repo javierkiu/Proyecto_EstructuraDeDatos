@@ -25,7 +25,10 @@ import javafx.stage.Stage;
  * @author JAVIER
  */
 public class UsuarioController implements Initializable {
-
+    private Stage stage;
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
     @FXML
     private ImageView imgview;
     @FXML

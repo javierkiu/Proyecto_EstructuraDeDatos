@@ -242,6 +242,8 @@ public class Utilidades {
         
     }
     
+        
+    
         public static void dibujar(ArrayList<Vehiculo> carros, FlowPane carrosfp){
             if(carros.isEmpty()) return;
             VBox vb;
