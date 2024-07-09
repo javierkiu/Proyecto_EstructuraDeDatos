@@ -20,10 +20,13 @@
          <children>
             <VBox fx:id="detailVBox" alignment="TOP_CENTER" prefHeight="478.0" prefWidth="271.0" spacing="5.0" style="-fx-border-color: grey;">
                <children>
-                  <HBox fx:id="userHbox" alignment="CENTER" prefHeight="39.0" prefWidth="269.0">
+                  <HBox fx:id="userHbox" alignment="CENTER" onMouseClicked="#volver" prefHeight="64.0" prefWidth="269.0" style="-fx-background-color: #670010;">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
                   </HBox>
                   <VBox alignment="CENTER" prefHeight="217.0" prefWidth="269.0">
                      <children>
@@ -60,6 +63,9 @@
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
                   </VBox>
                   <Button fx:id="Buscar" alignment="CENTER" mnemonicParsing="false" onAction="#filtrar" prefHeight="36.0" prefWidth="251.0" style="-fx-background-color: #670010; -fx-border-radius: 5;" text="Buscar" textFill="WHITE">
                      <font>

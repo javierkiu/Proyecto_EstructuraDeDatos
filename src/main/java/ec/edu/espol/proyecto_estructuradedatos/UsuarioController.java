@@ -4,6 +4,7 @@
  */
 package ec.edu.espol.proyecto_estructuradedatos;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -35,7 +36,9 @@ public class UsuarioController implements Initializable {
     private VBox comprar;
     @FXML
     private VBox vender;
-
+    
+    private String user;
+    
     /**
      * Initializes the controller class.
      */
@@ -44,32 +47,53 @@ public class UsuarioController implements Initializable {
         imgview.setImage(new Image("imgs/patiotuerca.png"));
         imgview.setFitHeight(70);
         imgview.setFitWidth(130);
-        bienvenida.setText("Bienvenido");
+        
     }    
-
+    void initializeData(String text) {
+        bienvenida.setText("Bienvenido "+text);
+        user = text;
+    }
     @FXML
-    private void iraventas(MouseEvent event) {
+    private void iraventas(MouseEvent event) throws IOException {
+//        FXMLLoader loader = new  FXMLLoader(getClass().getResource("ventas.fxml"));
+//        Parent root = loader.load();
+//
+//        VentasController controller = loader.getController();
+//
+//        Scene principal = new Scene(root,900,600);
+//        Stage newStage = new Stage();
+//        newStage.setScene(principal);
+//        newStage.show();
+//        controller.initializeData(user);
+//
+//        Stage currentStage = (Stage) bienvenida.getScene().getWindow();
+//        currentStage.close();
     }
 
-//    @FXML
-//    private void iracatalogo(MouseEvent event) {
-//            FXMLLoader loader = new  FXMLLoader(getClass().getResource("RootWindow.fxml"));
-//            Parent root = loader.load();
-//            
-//            RootWindowController controller = loader.getController();
-//
-//            Scene principal = new Scene(root,1200,700);
-//            Stage newStage = new Stage();
-//            newStage.setScene(principal);
-//            newStage.show();
-//            controller.initializeData(emailLog.getText());
-//
-//            Stage currentStage = (Stage) emailLog.getScene().getWindow();
-//            currentStage.close();
-//    }
+    @FXML
+    private void iracatalogo(MouseEvent event) throws IOException {
+            FXMLLoader loader = new  FXMLLoader(getClass().getResource("RootWindow.fxml"));
+            Parent root = loader.load();
+            
+            RootWindowController controller = loader.getController();
+
+            Scene principal = new Scene(root,1200,700);
+            Stage newStage = new Stage();
+            newStage.setScene(principal);
+            newStage.show();
+            controller.initializeData(user);
+
+            Stage currentStage = (Stage) bienvenida.getScene().getWindow();
+            currentStage.close();
+    }
 
     @FXML
     private void iravender(MouseEvent event) {
+        
+        
+        
     }
+
+
     
 }
