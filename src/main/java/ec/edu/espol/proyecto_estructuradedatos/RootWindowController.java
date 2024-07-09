@@ -187,6 +187,20 @@ public class RootWindowController implements Initializable {
             if(matches){
                 result.addLast(v);
             }             
+            vb.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent t1) -> {
+                generarVistaCarro(v);
+            });
+            
+//            vb.setOnMouseEntered((MouseEvent event) -> {
+//                if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
+//                    vb.setStyle("-fx-background-color: #ff0000"); // Cambiar el color de fondo a rojo
+//                }
+//                else if (event.getEventType() == MouseEvent.MOUSE_EXITED) {
+//                    vb.setStyle("-fx-background-color: #ffffff"); // Restablecer el color de fondo a blanco
+//                }
+//            });
+            
+            carrosfp.getChildren().add(vb);     
         }
         carrosfp.getChildren().clear();
         Utilidades.dibujar(result,carrosfp);
@@ -234,8 +248,40 @@ public class RootWindowController implements Initializable {
 //        }
 //    }
     
+    public void generarVistaCarro(Vehiculo v) 
+    {
+        Platform.runLater(()  -> {
+            
+            try {
+                
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("VistaCarro.fxml"));
+                Parent root = loader.load();
+                
+                VistaCarroController controller = loader.getController();
+                controller.setCarro(v);
+                controller.setVistaAutos(stage);
+                
+                controller.generar();
+                
+                Scene principal = new Scene(root,1200,700);
+                
+                Stage newStage = new Stage();
+                newStage.setScene(principal);
+                newStage.show();
+                controller.setStage(newStage);
+                
+                
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            
+                stage.hide();
+        });
+    }
+    
+    
     //Este método nos permite ver un carro específico
-//    public void verCarro(ImageView im,String s)
+//    public void verCarro(VBox vb)
 //    {
 //        Platform.runLater(() -> {
 //            listHBox.getChildren().clear();

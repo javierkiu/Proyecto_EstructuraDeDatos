@@ -5,7 +5,6 @@
 package lists;
 
 import java.io.Serializable;
-import java.util.Iterator;
 
 /**
  *
@@ -91,5 +90,35 @@ public class DoublyCircularLinkedList<E> implements Serializable {
 
     public DoublyCircularNodeList<E> getLast() {
         return last;
+    }
+    
+    public Iterator<E> iterator()
+    {
+        Iterator<E> it = new Iterator<E>()
+        {
+            DoublyCircularNodeList<E> cursor = getLast();
+            
+            @Override
+            public boolean hasNext()
+            {
+                return true;
+            }
+            
+            @Override
+            public E next() {
+                //E e = cursor.getcontent();
+                cursor = cursor.getNext();
+                return cursor.getcontent();
+            }
+            
+            public E back() 
+            {
+                //E e = cursor.getcontent();
+                cursor = cursor.getPrevious();
+                return cursor.getcontent();
+            }
+        };
+        
+        return it;
     }
 }

@@ -79,6 +79,7 @@ public class PrimaryController implements Initializable {
             Stage newStage = new Stage();
             newStage.setScene(principal);
             newStage.show();
+            controller.setStage(newStage);
             controller.initializeData(emailLog.getText());
 
             Stage currentStage = (Stage) emailLog.getScene().getWindow();
