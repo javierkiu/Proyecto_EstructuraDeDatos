@@ -109,6 +109,10 @@ public class RootWindowController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Negocio ng = new Negocio();
+        ng.setAutosEnVenta(carros);
+                
+                
         ImageView imgviewuser = new ImageView(new Image("imgs/user.png"));
         imgviewuser.setFitHeight(30);
         imgviewuser.setFitWidth(30);
@@ -117,7 +121,7 @@ public class RootWindowController implements Initializable {
         userHbox.setStyle("-fx-border-color: black ; -fx-border-width: 0 0 1px 0;");
         carros= Utilidades.leer();
         
-        ObservableList<String> optionsAutos = FXCollections.observableArrayList("Ligeros","Motocicletas");      
+        ObservableList<String> optionsAutos = FXCollections.observableArrayList("Ligero","Motocicleta");      
         cvautos.setItems(optionsAutos);
         
         ObservableList<String> optionsMarcas = FXCollections.observableArrayList(
@@ -144,22 +148,43 @@ public class RootWindowController implements Initializable {
                 2015,2014,2013,2012,2011,2010,2009,2008,2007,
                 2006,2005,2004,2003,2004,2003,2002,2001,2000,
                 1999,1998,1997,1996,1995,1994,1993,1992,1991);      
-        cvañoshasta.setItems(optionsAniosDesde); 
+        cvañoshasta.setItems(optionsAniosHasta); 
         
         
         dibujar(carros);
     }    
 
+    @FXML
     private void filtrar(ActionEvent event) {
-        if(
-                cvañoshasta.getValue() == null || 
-                cvañosdesde.getValue() == null || 
-                cvprecioshasta.getValue() == null|| 
-                cvpreciosdesde.getValue() == null|| 
-                cvautos.getValue() == null|| 
-                cvmarcas.getValue() == null) 
-            return;
+        ArrayList<Vehiculo> result = new ArrayList<>();
         
+        for(Vehiculo v : carros){
+            boolean matches = true;
+            
+            if(cvautos.getValue() != null && !v.getPeso().equalsIgnoreCase(cvautos.getValue())){
+                matches = false;
+            }
+            if(cvmarcas.getValue() != null && !v.getMarca().getNombre().equalsIgnoreCase(cvmarcas.getValue())){
+                matches = false;
+            }
+            if(cvpreciosdesde.getValue() != null && (v.getPrecio() < cvpreciosdesde.getValue())){
+                matches = false;
+            }
+            if(cvprecioshasta.getValue() != null && (v.getPrecio() > cvprecioshasta.getValue())){
+                matches = false;
+            }
+            if(cvañosdesde.getValue() != null && (v.getAño() < cvañosdesde.getValue())){
+                matches = false;
+            }
+            if(cvañoshasta.getValue() != null && (v.getAño() > cvañoshasta.getValue())){
+                matches = false;
+            } 
+            if(matches){
+                result.addLast(v);
+            }             
+        }
+        carrosfp.getChildren().clear();
+        dibujar(result);
     }
     
     public boolean dibujar(ArrayList<Vehiculo> carros){
@@ -168,9 +193,10 @@ public class RootWindowController implements Initializable {
         ImageView iv;
         Label lb1; 
         Label lb2;
+        Label lb3;
         String st1;
         String st2;
-
+        String st3;
         for(Vehiculo v : carros){
             vb = new VBox();
             iv = new ImageView(new Image("imgs/"+v.getFotos().getLast().getcontent()+".jpg"));
@@ -182,15 +208,20 @@ public class RootWindowController implements Initializable {
             lb2 = new Label(st2);
             lb2.setStyle("-fx-font-weight: bold;");
 
+            st3 = "Año: " + Integer.toString(v.getAño());
+            lb3 = new Label(st3);
+            lb3.setStyle("-fx-font-weight: bold;");
+            
             iv.setFitHeight(150);
             iv.setFitWidth(225);
-            Insets margin = new Insets(10, 20, 10, 20);
-            carrosfp.setMargin(vb,margin);
+            carrosfp.setMargin(vb,new Insets(10, 20, 10, 20));
             vb.setMargin(lb1,new Insets(10,0,10,5));
-            vb.setMargin(lb2,new Insets(10,0,10,5));
+            vb.setMargin(lb2,new Insets(0,0,0,5));
+            vb.setMargin(lb3,new Insets(10,0,10,5));
+
             vb.setStyle("-fx-border-color: gray; -fx-border-width: 0.5px; -fx-border-style: solid;");
 
-            vb.getChildren().addAll(iv, lb1,lb2);
+            vb.getChildren().addAll(iv, lb1,lb2,lb3);
             
 //            vb.setOnMouseEntered((MouseEvent event) -> {
 //                if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {

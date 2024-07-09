@@ -61,7 +61,7 @@
                         <Insets />
                      </opaqueInsets>
                   </VBox>
-                  <Button fx:id="Buscar" alignment="CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="251.0" style="-fx-background-color: #670010; -fx-border-radius: 5;" text="Buscar" textFill="WHITE">
+                  <Button fx:id="Buscar" alignment="CENTER" mnemonicParsing="false" onAction="#filtrar" prefHeight="36.0" prefWidth="251.0" style="-fx-background-color: #670010; -fx-border-radius: 5;" text="Buscar" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>

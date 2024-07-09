@@ -1,11 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyecto_estructuradedatos.UsuarioController">
-    
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyecto_estructuradedatos.UsuarioController">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="-6.0" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <HBox prefHeight="85.0" prefWidth="600.0" style="-fx-background-color: #3c0000;">
+               <children>
+                  <ImageView fx:id="imgview" fitHeight="72.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin></ImageView>
+                  <Label fx:id="bienvenida" alignment="CENTER" prefHeight="72.0" prefWidth="217.0" textFill="WHITE">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin></Label>
+               </children>
+            </HBox>
+            <Pane prefHeight="328.0" prefWidth="594.0">
+               <children>
+                  <Label layoutX="221.0" layoutY="41.0" text="Que desea hacer?">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="90.0" fitWidth="94.0" layoutX="411.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="90.0" fitWidth="94.0" layoutX="253.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true" />
+                  <VBox fx:id="verventas" alignment="CENTER" layoutX="97.0" layoutY="100.0" onMouseClicked="#iraventas" prefHeight="125.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Ver ventas">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="98.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="comprar" alignment="CENTER" layoutX="247.0" layoutY="100.0" onMouseClicked="#iracatalogo" prefHeight="125.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Comprar">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="98.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="vender" alignment="CENTER" layoutX="408.0" layoutY="100.0" onMouseClicked="#iravender" prefHeight="125.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Vender">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="98.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>
