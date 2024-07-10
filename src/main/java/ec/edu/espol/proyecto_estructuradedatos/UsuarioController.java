@@ -39,18 +39,15 @@ public class UsuarioController implements Initializable {
     private VBox comprar;
     @FXML
     private VBox vender;
-    
+
     private String user;
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        imgview.setImage(new Image("imgs/patiotuerca.png"));
-        imgview.setFitHeight(70);
-        imgview.setFitWidth(130);
-        
+
     }    
     void initializeData(String text) {
         bienvenida.setText("Bienvenido "+text);
@@ -77,7 +74,7 @@ public class UsuarioController implements Initializable {
     private void iracatalogo(MouseEvent event) throws IOException {
             FXMLLoader loader = new  FXMLLoader(getClass().getResource("RootWindow.fxml"));
             Parent root = loader.load();
-            
+
             RootWindowController controller = loader.getController();
 
             Scene principal = new Scene(root,1200,700);
@@ -85,6 +82,7 @@ public class UsuarioController implements Initializable {
             newStage.setScene(principal);
             newStage.show();
             controller.initializeData(user);
+            controller.setStage(newStage);
 
             Stage currentStage = (Stage) bienvenida.getScene().getWindow();
             currentStage.close();
@@ -92,11 +90,11 @@ public class UsuarioController implements Initializable {
 
     @FXML
     private void iravender(MouseEvent event) {
-        
-        
-        
+
+
+
     }
 
 
-    
+
 }

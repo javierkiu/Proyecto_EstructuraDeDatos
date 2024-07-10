@@ -36,15 +36,7 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-//          Usuario us = new Usuario("Javier","Rodriguez","javierkiu","12345","javier@gmail.com");
-//          Utilidades.registrarUsuario(us);
         launch();
-//        DoublyCircularLinkedList dc = new DoublyCircularLinkedList();
-//        dc.addLast(1);
-//        dc.addLast(2);
-//        dc.addLast(3);
-//        dc.addLast(4);
-
     }
 
 }

@@ -58,7 +58,7 @@ import modelo.*;
 public class RootWindowController implements Initializable {
 
     static void initializeData(TextField emailLog) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
     
     private Stage stage;
@@ -80,6 +80,8 @@ public class RootWindowController implements Initializable {
     private HBox userHbox;
     @FXML
     private Button Buscar;
+    @FXML
+    private Button volverBtt;
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -106,24 +108,20 @@ public class RootWindowController implements Initializable {
     public void initializeData(String user){
         Usuario us = Utilidades.obtenerDatosUsuario(user);
         Label lb = new Label(us.getNombre() + " " + us.getApellido());
-        lb.setStyle("-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white;");
+        lb.setStyle("-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white");
         userHbox.getChildren().add(lb);
+        userHbox.setStyle("-fx-background-color: #670010");
         this.user = user;
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Negocio ng = new Negocio();
-        ng.setAutosEnVenta(carros);
-                
-                
         ImageView imgviewuser = new ImageView(new Image("imgs/user.png"));
         imgviewuser.setFitHeight(30);
         imgviewuser.setFitWidth(30);
         userHbox.setMargin(imgviewuser,new Insets(0,10,0,0));
         userHbox.getChildren().add(imgviewuser);
-        userHbox.setStyle("-fx-border-color: black ; -fx-border-width: 0 0 1px 0;-fx-background-color:  #670010");
-        
+        userHbox.setStyle("-fx-border-color: black ; -fx-border-width: 0 0 1px 0;");
         carros= Utilidades.leer();
         
         ObservableList<String> optionsAutos = FXCollections.observableArrayList("Ligero","Motocicleta");      
@@ -153,10 +151,10 @@ public class RootWindowController implements Initializable {
                 2015,2014,2013,2012,2011,2010,2009,2008,2007,
                 2006,2005,2004,2003,2004,2003,2002,2001,2000,
                 1999,1998,1997,1996,1995,1994,1993,1992,1991);      
-        cvañoshasta.setItems(optionsAniosHasta); 
+        cvañoshasta.setItems(optionsAniosDesde); 
         
         
-        Utilidades.dibujar(carros,carrosfp);
+        dibujar(carros);
     }    
 
     @FXML
@@ -186,12 +184,14 @@ public class RootWindowController implements Initializable {
             } 
             if(matches){
                 result.addLast(v);
-            }             
+            }   
 
-        carrosfp.getChildren().clear();
-        Utilidades.dibujar(result,carrosfp);
-    }}
-    
+        }
+        Platform.runLater(()-> {
+            carrosfp.getChildren().clear();
+            dibujar(result);
+        });
+    }
     
     public boolean dibujar(ArrayList<Vehiculo> carros){
         if(carros.isEmpty()) return false;
@@ -199,8 +199,11 @@ public class RootWindowController implements Initializable {
         ImageView iv;
         Label lb1; 
         Label lb2;
+        Label lb3;
         String st1;
         String st2;
+        String st3;
+
         for(Vehiculo v : carros){
             vb = new VBox();
             iv = new ImageView(new Image("imgs/"+v.getFotos().getLast().getcontent()+".jpg"));
@@ -211,27 +214,38 @@ public class RootWindowController implements Initializable {
             st2 = Double.toString(v.getPrecio()) + "$";
             lb2 = new Label(st2);
             lb2.setStyle("-fx-font-weight: bold;");
+
+            st3 = "Año: "+Integer.toString(v.getAño());
+            lb3 = new Label(st3);
+            lb3.setStyle("-fx-font-weight: bold;");  
+            
             iv.setFitHeight(150);
             iv.setFitWidth(225);
-            Insets margin = new Insets(10, 20, 10, 20);
-            carrosfp.setMargin(vb,margin);
+            carrosfp.setMargin(vb,new Insets(10, 20, 10, 20));
             vb.setMargin(lb1,new Insets(10,0,10,5));
             vb.setMargin(lb2,new Insets(10,0,10,5));
+            vb.setMargin(lb3,new Insets(0,0,0,5));
+
             vb.setStyle("-fx-border-color: gray; -fx-border-width: 0.5px; -fx-border-style: solid;");
 
-            vb.getChildren().addAll(iv, lb1,lb2);
-
-            vb.setOnMouseClicked(event -> {
-                System.out.println("aaa al mneos funcionaaaa");
+            vb.getChildren().addAll(iv, lb1,lb3,lb2);
+            
+            vb.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent t1) -> {
                 generarVistaCarro(v);
             });
+            
+            carrosfp.getChildren().add(vb);     
         }
         return true;
     }
+    
+    
     public void generarVistaCarro(Vehiculo v) 
     {
         Platform.runLater(()  -> {
+            
             try {
+                
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("VistaCarro.fxml"));
                 Parent root = loader.load();
                 
@@ -242,61 +256,41 @@ public class RootWindowController implements Initializable {
                 controller.generar();
                 
                 Scene principal = new Scene(root,1200,700);
-                Stage newStage = new Stage();
                 
+                Stage newStage = new Stage();
                 newStage.setScene(principal);
                 newStage.show();
                 controller.setStage(newStage);
-                Stage currentStage = (Stage) cvautos.getScene().getWindow();
-                currentStage.close();
+                
                 
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+            
                 stage.hide();
         });
     }
-    
-    
-    //Este método nos permite ver un carro específico
-//    public void verCarro(VBox vb)
-//    {
-//        Platform.runLater(() -> {
-//            listHBox.getChildren().clear();
-//            listHBox.getChildren().addAll(im);
-//
-//            detailVBox.getChildren().clear();
-//            Label l1 = new Label("Detalle");
-//            detailVBox.getChildren().addAll(l1);
-//
-//            //A partir del nombre de la imagen encontramos el vehículo que la contiene
-//            for(DoublyCircularNodeList<Vehiculo> v = carros.getLast().getNext();v != carros.getLast(); v = v.getNext())
-//            {
-//                if(v.getcontent().getFotos().getLast().getNext().equals(s))
-//                {
-//                    TextField td = new TextField(v.getcontent().getFotos().getLast().getNext().getcontent().toString());
-//                    detailVBox.getChildren().addAll(td);
-//                }
-//            }
-//        });
-//    }
 
     @FXML
-    private void volver(MouseEvent event) throws IOException {
+    private void volver(ActionEvent event) throws IOException {
             FXMLLoader loader = new  FXMLLoader(getClass().getResource("usuario.fxml"));
             Parent root = loader.load();
             
             UsuarioController controller = loader.getController();
 
-            Scene principal = new Scene(root,930,570);
+            Scene principal = new Scene(root,1200,700);
             Stage newStage = new Stage();
             newStage.setScene(principal);
             newStage.show();
+            controller.setStage(newStage);
             controller.initializeData(user);
 
-            Stage currentStage = (Stage) cvautos.getScene().getWindow();
+            Stage currentStage = (Stage) carrosfp.getScene().getWindow();
             currentStage.close();
     }
+
+    
+    
     
     
 }

@@ -75,7 +75,7 @@ public class PrimaryController implements Initializable {
             
             UsuarioController controller = loader.getController();
 
-            Scene principal = new Scene(root,930,570);
+            Scene principal = new Scene(root,1200,700);
             Stage newStage = new Stage();
             newStage.setScene(principal);
             newStage.show();
