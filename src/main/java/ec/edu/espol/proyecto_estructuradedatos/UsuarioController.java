@@ -94,8 +94,20 @@ public class UsuarioController implements Initializable {
     }
 
     @FXML
-    private void iravender(MouseEvent event) {
+    private void iravender(MouseEvent event) throws IOException {
+        FXMLLoader loader = new  FXMLLoader(getClass().getResource("vender.fxml"));
+        Parent root = loader.load();
 
+        VenderController controller = loader.getController();
+
+        Scene principal = new Scene(root,1100,700);
+        Stage newStage = new Stage();
+        newStage.setScene(principal);
+        newStage.show();
+        controller.initializeData(user);
+
+        Stage currentStage = (Stage) bienvenida.getScene().getWindow();
+        currentStage.close();
 
     }
 

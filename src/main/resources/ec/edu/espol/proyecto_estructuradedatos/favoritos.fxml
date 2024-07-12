@@ -22,7 +22,7 @@
             </Label>
          </children>
       </FlowPane>
-      <ScrollPane hbarPolicy="NEVER" prefHeight="544.0" prefWidth="900.0">
+      <ScrollPane prefHeight="544.0" prefWidth="900.0">
          <content>
             <FlowPane fx:id="carrosfp" alignment="CENTER" columnHalignment="CENTER" prefHeight="539.0" prefWidth="897.0" />
          </content>

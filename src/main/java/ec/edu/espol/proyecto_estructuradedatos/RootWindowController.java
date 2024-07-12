@@ -245,7 +245,6 @@ public class RootWindowController implements Initializable {
     public void generarVistaCarro(Vehiculo v) 
     {
         Platform.runLater(()  -> {
-            
             try {
                 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("VistaCarro.fxml"));

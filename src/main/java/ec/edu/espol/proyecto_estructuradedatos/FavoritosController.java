@@ -53,9 +53,7 @@ public class FavoritosController implements Initializable {
     }    
     void initializeData(String user) {
         this.user = user;
-        System.out.println(user);
-        System.out.println(Utilidades.obtenerUsuario(user).getFavoritos());
-        System.out.println(Utilidades.obtenerUsuario(user));
+
         dibujar(Utilidades.obtenerUsuario(user).getFavoritos());
 
     }
