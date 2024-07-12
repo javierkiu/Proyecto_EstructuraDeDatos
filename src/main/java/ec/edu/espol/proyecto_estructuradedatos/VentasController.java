@@ -29,6 +29,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lists.ArrayList;
+import modelo.Usuario;
 import modelo.Utilidades;
 import modelo.Vehiculo;
 /**
@@ -59,7 +60,17 @@ public class VentasController implements Initializable {
 
     void initializeData(String user) {
         this.user = user;
-        dibujar(Utilidades.obtenerDatosUsuario(user).getEnVenta());
+        int indiceUsuario = 0;
+        Usuario u = new Usuario(user, user, user, user, user);
+        ArrayList<Usuario> usuarios = Utilidades.leerUsuarios();
+        for(Usuario u1: usuarios)
+        {
+            if(u1.getUsuario().equals(user))
+                u = usuarios.get(indiceUsuario);
+            indiceUsuario++;
+        }
+        
+        dibujar(u.getEnVenta());
     }
 
     @FXML

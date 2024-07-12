@@ -1,1 +1,2 @@
 jajorodr,Javier,Rodriguez,jajorodr@espol.edu.ec,123
+levezmor,Levin,Morán,levezmor@espol.edu.ec,1234

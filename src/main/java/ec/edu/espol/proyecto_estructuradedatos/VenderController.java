@@ -17,6 +17,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import lists.ArrayList;
+import modelo.Marca;
+import modelo.Usuario;
+import modelo.Utilidades;
+import modelo.Vehiculo;
 /**
  * FXML Controller class
  *
@@ -96,7 +101,42 @@ public class VenderController implements Initializable {
 
 
     @FXML
-    private void comprar(ActionEvent event) {
+    private void vender(MouseEvent event) {
+        if(verificarCampos())
+            crearCarro();
+    }
+    
+    //Devuelve true cuando los campos están llenos
+    public boolean verificarCampos()
+    {
+        return !(modelo.getText().isBlank() || marca.getText().isBlank() || precio.getText().isBlank() ||
+               placa.getText().isBlank() || motor.getText().isBlank() || kilometraje.getText().isBlank() ||
+               peso.getText().isBlank() || estado.getText().isBlank() || anio.getText().isBlank() || foto.getText().isBlank());
+    }
+    
+    public void crearCarro()
+    {
+        Usuario us = Utilidades.obtenerDatosUsuario(user);
+        Marca mark = new Marca(marca.getText().toLowerCase(), "imgs/" + marca.getText().toLowerCase() + ".png");
+        Vehiculo carro = new Vehiculo(Double.parseDouble(precio.getText()), mark,
+                modelo.getText(), Integer.parseInt(kilometraje.getText()),
+           0, Integer.parseInt(motor.getText()), peso.getText(), estado.getText(),
+                placa.getText(), Integer.parseInt(anio.getText()));
+        Utilidades.subirImgs(2, carro);
+        us.getEnVenta().addFirst(carro);
+        int indice =  Utilidades.leerUsuarios().getIndex(us);
+        ArrayList<Usuario> enlista = new ArrayList<>();
+        int contador = 0;
+        for(Usuario u: Utilidades.leerUsuarios())
+        {
+            if(contador == indice)
+                enlista.add(indice, us);
+            else
+                enlista.addLast(u);
+            contador++;
+        }
+        
+        Utilidades.serializarUsuarios(enlista);
     }
 
  
