@@ -70,10 +70,10 @@ public class PrimaryController implements Initializable {
             a.show();
         }
         else{
-            FXMLLoader loader = new  FXMLLoader(getClass().getResource("RootWindow.fxml"));
+            FXMLLoader loader = new  FXMLLoader(getClass().getResource("usuario.fxml"));
             Parent root = loader.load();
             
-            RootWindowController controller = loader.getController();
+            UsuarioController controller = loader.getController();
 
             Scene principal = new Scene(root,1200,700);
             Stage newStage = new Stage();

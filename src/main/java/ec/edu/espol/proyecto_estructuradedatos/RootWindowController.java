@@ -58,7 +58,7 @@ import modelo.*;
 public class RootWindowController implements Initializable {
 
     static void initializeData(TextField emailLog) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
     
     private Stage stage;
@@ -80,6 +80,8 @@ public class RootWindowController implements Initializable {
     private HBox userHbox;
     @FXML
     private Button Buscar;
+    @FXML
+    private Button volverBtt;
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -101,14 +103,15 @@ public class RootWindowController implements Initializable {
     private ArrayList<Vehiculo> carros;     
     @FXML
     private FlowPane carrosfp;
-    
+    private String user;
     
     public void initializeData(String user){
         Usuario us = Utilidades.obtenerDatosUsuario(user);
         Label lb = new Label(us.getNombre() + " " + us.getApellido());
-        lb.setStyle("-fx-font-size: 15px; -fx-font-weight: bold;");
+        lb.setStyle("-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: white");
         userHbox.getChildren().add(lb);
-        
+        userHbox.setStyle("-fx-background-color: #670010");
+        this.user = user;
     }
     
     @Override
@@ -121,7 +124,7 @@ public class RootWindowController implements Initializable {
         userHbox.setStyle("-fx-border-color: black ; -fx-border-width: 0 0 1px 0;");
         carros= Utilidades.leer();
         
-        ObservableList<String> optionsAutos = FXCollections.observableArrayList("Ligeros","Motocicletas");      
+        ObservableList<String> optionsAutos = FXCollections.observableArrayList("Ligero","Motocicleta");      
         cvautos.setItems(optionsAutos);
         
         ObservableList<String> optionsMarcas = FXCollections.observableArrayList(
@@ -154,16 +157,40 @@ public class RootWindowController implements Initializable {
         dibujar(carros);
     }    
 
+    @FXML
     private void filtrar(ActionEvent event) {
-        if(
-                cvañoshasta.getValue() == null || 
-                cvañosdesde.getValue() == null || 
-                cvprecioshasta.getValue() == null|| 
-                cvpreciosdesde.getValue() == null|| 
-                cvautos.getValue() == null|| 
-                cvmarcas.getValue() == null) 
-            return;
+        ArrayList<Vehiculo> result = new ArrayList<>();
         
+        for(Vehiculo v : carros){
+            boolean matches = true;
+            
+            if(cvautos.getValue() != null && !v.getPeso().equalsIgnoreCase(cvautos.getValue())){
+                matches = false;
+            }
+            if(cvmarcas.getValue() != null && !v.getMarca().getNombre().equalsIgnoreCase(cvmarcas.getValue())){
+                matches = false;
+            }
+            if(cvpreciosdesde.getValue() != null && (v.getPrecio() < cvpreciosdesde.getValue())){
+                matches = false;
+            }
+            if(cvprecioshasta.getValue() != null && (v.getPrecio() > cvprecioshasta.getValue())){
+                matches = false;
+            }
+            if(cvañosdesde.getValue() != null && (v.getAño() < cvañosdesde.getValue())){
+                matches = false;
+            }
+            if(cvañoshasta.getValue() != null && (v.getAño() > cvañoshasta.getValue())){
+                matches = false;
+            } 
+            if(matches){
+                result.addLast(v);
+            }   
+
+        }
+        Platform.runLater(()-> {
+            carrosfp.getChildren().clear();
+            dibujar(result);
+        });
     }
     
     public boolean dibujar(ArrayList<Vehiculo> carros){
@@ -172,8 +199,10 @@ public class RootWindowController implements Initializable {
         ImageView iv;
         Label lb1; 
         Label lb2;
+        Label lb3;
         String st1;
         String st2;
+        String st3;
 
         for(Vehiculo v : carros){
             vb = new VBox();
@@ -186,90 +215,30 @@ public class RootWindowController implements Initializable {
             lb2 = new Label(st2);
             lb2.setStyle("-fx-font-weight: bold;");
 
+            st3 = "Año: "+Integer.toString(v.getAño());
+            lb3 = new Label(st3);
+            lb3.setStyle("-fx-font-weight: bold;");  
+            
             iv.setFitHeight(150);
             iv.setFitWidth(225);
-            Insets margin = new Insets(10, 20, 10, 20);
-            carrosfp.setMargin(vb,margin);
+            carrosfp.setMargin(vb,new Insets(10, 20, 10, 20));
             vb.setMargin(lb1,new Insets(10,0,10,5));
             vb.setMargin(lb2,new Insets(10,0,10,5));
+            vb.setMargin(lb3,new Insets(0,0,0,5));
+
             vb.setStyle("-fx-border-color: gray; -fx-border-width: 0.5px; -fx-border-style: solid;");
 
-            vb.getChildren().addAll(iv, lb1,lb2);
+            vb.getChildren().addAll(iv, lb1,lb3,lb2);
             
             vb.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent t1) -> {
                 generarVistaCarro(v);
             });
-            
-//            vb.setOnMouseEntered((MouseEvent event) -> {
-//                if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
-//                    vb.setStyle("-fx-background-color: #ff0000"); // Cambiar el color de fondo a rojo
-//                }
-//                else if (event.getEventType() == MouseEvent.MOUSE_EXITED) {
-//                    vb.setStyle("-fx-background-color: #ffffff"); // Restablecer el color de fondo a blanco
-//                }
-//            });
             
             carrosfp.getChildren().add(vb);     
         }
         return true;
     }
     
-//    public boolean dibujar(DoublyCircularLinkedList<Vehiculo> carros){
-//        if(carros.isEmpty()) return false;
-//        DoublyCircularNodeList<Vehiculo> nd= carros.getLast().getNext();
-//        HBox hb;
-//        ImageView iv;
-//        do{
-//            hb = new HBox();
-//            iv = new ImageView(new Image(nd.getcontent().getFotos().getLast().getcontent()));
-//            iv.setFitHeight(50);
-//            iv.setFitWidth(60);
-//            hb.getChildren().add(iv);
-//            listHBox.getChildren().add(hb);
-//        }while(nd!=carros.getLast().getNext());
-//        
-//        return true;
-//    }
-    
-//    public void dibujarLista(DoublyCircularLinkedList<Vehiculo> carros)
-//    {
-//        Platform.runLater(() -> {
-//            listHBox.getChildren().clear();
-//        });
-//        
-//        //Verificamos que la lista no esté vacía
-//        if(!carros.isEmpty())
-//        {
-//            //Problema: Nunca dibuja el vehículo con índice last
-//            //Recorremos los elementos para poder obtener las imágenes
-//            for(DoublyCircularNodeList<Vehiculo> v = carros.getLast().getNext();v != carros.getLast(); v = v.getNext())
-//            {
-//                ImageView im = new ImageView("imgs/"+v.getcontent().getFotos().getLast().getNext().getcontent().toString());
-//                //Cada imagen tendrá un manejador para que al darle click nos muestre la información del carro
-//                im.addEventHandler(MouseEvent.MOUSE_CLICKED,(MouseEvent t) -> { 
-//                    Platform.runLater(() -> {
-//                        verCarro(im,t.getSource().toString());
-//                        Button b1 = new Button("Regresar");
-//                        b1.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent t1) -> {dibujarLista(carros);});
-//                        detailVBox.getChildren().addAll(b1);
-//                    });
-//                });
-//                listHBox.getChildren().addAll(im);
-//                System.out.println("HOLAAAAAAAAAAA");
-//                listHBox.getChildren().addAll(new Label("holaaa"));
-//
-//            }
-//        }
-//        else
-//        {
-//            Label l = new Label("No existen vehículos");
-//            l.setTextFill(Paint.valueOf("Black"));
-//            l.setPrefSize(500, 500);
-//            Platform.runLater(() -> {
-//                listHBox.getChildren().addAll(l);
-//            });
-//        }
-//    }
     
     public void generarVistaCarro(Vehiculo v) 
     {
@@ -301,30 +270,27 @@ public class RootWindowController implements Initializable {
                 stage.hide();
         });
     }
+
+    @FXML
+    private void volver(ActionEvent event) throws IOException {
+            FXMLLoader loader = new  FXMLLoader(getClass().getResource("usuario.fxml"));
+            Parent root = loader.load();
+            
+            UsuarioController controller = loader.getController();
+
+            Scene principal = new Scene(root,1200,700);
+            Stage newStage = new Stage();
+            newStage.setScene(principal);
+            newStage.show();
+            controller.setStage(newStage);
+            controller.initializeData(user);
+
+            Stage currentStage = (Stage) carrosfp.getScene().getWindow();
+            currentStage.close();
+    }
+
     
     
-    //Este método nos permite ver un carro específico
-//    public void verCarro(VBox vb)
-//    {
-//        Platform.runLater(() -> {
-//            listHBox.getChildren().clear();
-//            listHBox.getChildren().addAll(im);
-//
-//            detailVBox.getChildren().clear();
-//            Label l1 = new Label("Detalle");
-//            detailVBox.getChildren().addAll(l1);
-//
-//            //A partir del nombre de la imagen encontramos el vehículo que la contiene
-//            for(DoublyCircularNodeList<Vehiculo> v = carros.getLast().getNext();v != carros.getLast(); v = v.getNext())
-//            {
-//                if(v.getcontent().getFotos().getLast().getNext().equals(s))
-//                {
-//                    TextField td = new TextField(v.getcontent().getFotos().getLast().getNext().getcontent().toString());
-//                    detailVBox.getChildren().addAll(td);
-//                }
-//            }
-//        });
-//    }
     
     
 }

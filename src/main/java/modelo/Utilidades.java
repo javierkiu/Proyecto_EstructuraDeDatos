@@ -150,62 +150,63 @@ public class Utilidades {
         Marca toyota = new Marca("toyota", "toyota.png");
         Marca yamaha = new Marca("yamaha", "yamaha.png");
 
-        Vehiculo vb1 = new Vehiculo(4500, chevrolet, "aveo", 12000, 500, 1400, "ligero", "usado", Utilidades.generarPlaca());
+        Vehiculo vb1 = new Vehiculo(4500, chevrolet, "aveo", 12000, 500, 1400, "ligero", "usado", Utilidades.generarPlaca(), 2010);
         vb1 = Utilidades.subirImgs(4, vb1);
 
-        Vehiculo vb2 = new Vehiculo(5500, chevrolet, "groove", 8000, 600, 1600, "ligero", "usado", Utilidades.generarPlaca());
+        Vehiculo vb2 = new Vehiculo(5500, chevrolet, "groove", 8000, 600, 1600, "ligero", "usado", Utilidades.generarPlaca(), 2012);
         vb2 = Utilidades.subirImgs(4, vb2);
         
-        Vehiculo vb3 = new Vehiculo(3000, chevrolet, "spark", 15000, 700, 1200, "ligero", "usado", Utilidades.generarPlaca());
+        Vehiculo vb3 = new Vehiculo(3000, chevrolet, "spark", 15000, 700, 1200, "ligero", "usado", Utilidades.generarPlaca(), 2015);
         vb3 = Utilidades.subirImgs(4, vb3);
      
-        Vehiculo vb4 = new Vehiculo(3500, chevrolet, "vivant", 20000, 400, 1500, "ligero", "usado", Utilidades.generarPlaca());
+        Vehiculo vb4 = new Vehiculo(3500, chevrolet, "vivant", 20000, 400, 1500, "ligero", "usado", Utilidades.generarPlaca(), 2008);
         vb4 = Utilidades.subirImgs(4, vb4);
 
-        Vehiculo vb5 = new Vehiculo(3200, renault, "taliant", 0, 300, 1300, "ligero", "nuevo", Utilidades.generarPlaca());
+        Vehiculo vb5 = new Vehiculo(3200, renault, "taliant", 0, 300, 1300, "ligero", "nuevo", Utilidades.generarPlaca(), 2023);
         vb5 = Utilidades.subirImgs(4, vb5);
         
-        Vehiculo vb6 = new Vehiculo(3400, renault, "sandero", 0, 350, 1400, "ligero", "nuevo", Utilidades.generarPlaca());
+        Vehiculo vb6 = new Vehiculo(3400, renault, "sandero", 0, 350, 1400, "ligero", "nuevo", Utilidades.generarPlaca(), 2023);
         vb6 = Utilidades.subirImgs(4, vb6);
         
-        Vehiculo vb7 = new Vehiculo(3100, renault, "kwid", 0, 250, 1100, "ligero", "nuevo", Utilidades.generarPlaca());
+        Vehiculo vb7 = new Vehiculo(3100, renault, "kwid", 0, 250, 1100, "ligero", "nuevo", Utilidades.generarPlaca(), 2023);
         vb7= Utilidades.subirImgs(4, vb7);
         
-        Vehiculo vb8 = new Vehiculo(3300, renault, "logan", 0, 320, 1450, "ligero", "nuevo", Utilidades.generarPlaca());
+        Vehiculo vb8 = new Vehiculo(3300, renault, "logan", 0, 320, 1450, "ligero", "nuevo", Utilidades.generarPlaca(), 2023);
         vb8 = Utilidades.subirImgs(4, vb8);
         
-        Vehiculo vb9 = new Vehiculo(7000, hyundai, "sonata", 22000, 600, 1700, "ligero", "usado", Utilidades.generarPlaca());
+        Vehiculo vb9 = new Vehiculo(7000, hyundai, "sonata", 22000, 600, 1700, "ligero", "usado", Utilidades.generarPlaca(), 2018);
         vb9 = Utilidades.subirImgs(4, vb9);
         
-        Vehiculo vb10 = new Vehiculo(4200, hyundai, "accent", 15000, 450, 1600, "ligero", "usado", Utilidades.generarPlaca());
+        Vehiculo vb10 = new Vehiculo(4200, hyundai, "accent", 15000, 450, 1600, "ligero", "usado", Utilidades.generarPlaca(), 2016);
         vb10 = Utilidades.subirImgs(4, vb10);
         
-        Vehiculo vb11 = new Vehiculo(6800, hyundai, "tucson", 18000, 500, 1800, "ligero", "usado", Utilidades.generarPlaca());
+        Vehiculo vb11 = new Vehiculo(6800, hyundai, "tucson", 18000, 500, 1800, "ligero", "usado", Utilidades.generarPlaca(), 2019);
         vb11 = Utilidades.subirImgs(4, vb11);
         
-        Vehiculo vb12 = new Vehiculo(5200, hyundai, "creta", 14000, 400, 1750, "ligero", "usado", Utilidades.generarPlaca());
+        Vehiculo vb12 = new Vehiculo(5200, hyundai, "creta", 14000, 400, 1750, "ligero", "usado", Utilidades.generarPlaca(), 2017);
         vb12 = Utilidades.subirImgs(4, vb12);
         
-        Vehiculo vb13 = new Vehiculo(8500, toyota, "camry", 30000, 700, 1600, "ligero", "usado", Utilidades.generarPlaca());
+        Vehiculo vb13 = new Vehiculo(8500, toyota, "camry", 30000, 700, 1600, "ligero", "usado", Utilidades.generarPlaca(), 2020);
         vb13 = Utilidades.subirImgs(4, vb13);
         
-        Vehiculo vb14 = new Vehiculo(9500, toyota, "fortuner", 35000, 750, 1900, "ligero", "usado", Utilidades.generarPlaca());
+        Vehiculo vb14 = new Vehiculo(9500, toyota, "fortuner", 35000, 750, 1900, "ligero", "usado", Utilidades.generarPlaca(), 2021);
         vb14 = Utilidades.subirImgs(2, vb14);
         
-        Vehiculo vb15 = new Vehiculo(12000, honda, "cbr600rr", 0, 200, 200, "motocicleta", "nuevo", Utilidades.generarPlaca());
+        Vehiculo vb15 = new Vehiculo(12000, honda, "cbr600rr", 0, 200, 200, "motocicleta", "nuevo", Utilidades.generarPlaca(), 2023);
         vb15 = Utilidades.subirImgs(2, vb15);
         
-        Vehiculo vb16 = new Vehiculo(11000, yamaha, "yzfr7", 0, 220, 210, "motocicleta", "nuevo", Utilidades.generarPlaca());
+        Vehiculo vb16 = new Vehiculo(11000, yamaha, "yzfr7", 0, 220, 210, "motocicleta", "nuevo", Utilidades.generarPlaca(), 2023);
         vb16 = Utilidades.subirImgs(2, vb16);
         
-        Vehiculo vb17 = new Vehiculo(11500, kawasaki, "ninjazx6r", 0, 250, 220, "motocicleta", "nuevo", Utilidades.generarPlaca());
+        Vehiculo vb17 = new Vehiculo(11500, kawasaki, "ninjazx6r", 0, 250, 220, "motocicleta", "nuevo", Utilidades.generarPlaca(), 2023);
         vb17 = Utilidades.subirImgs(2, vb17);
         
-        Vehiculo vb18 = new Vehiculo(13000, ducati, "panigalev2", 0, 280, 230, "motocicleta", "nuevo", Utilidades.generarPlaca());
+        Vehiculo vb18 = new Vehiculo(13000, ducati, "panigalev2", 0, 280, 230, "motocicleta", "nuevo", Utilidades.generarPlaca(), 2023);
         vb18 = Utilidades.subirImgs(2, vb18);
         
-        Vehiculo vb19 = new Vehiculo(12500, suzuki, "gsxr1000", 0, 260, 240, "motocicleta", "nuevo", Utilidades.generarPlaca());
+        Vehiculo vb19 = new Vehiculo(12500, suzuki, "gsxr1000", 0, 260, 240, "motocicleta", "nuevo", Utilidades.generarPlaca(), 2023);
         vb19 = Utilidades.subirImgs(2, vb19);
+
         
         result.addLast(vb1);
         result.addLast(vb2);

@@ -20,51 +20,64 @@
          <children>
             <VBox fx:id="detailVBox" alignment="TOP_CENTER" prefHeight="478.0" prefWidth="271.0" spacing="5.0" style="-fx-border-color: grey;">
                <children>
-                  <HBox fx:id="userHbox" alignment="CENTER" prefHeight="39.0" prefWidth="269.0">
+                  <HBox fx:id="userHbox" alignment="CENTER" prefHeight="63.0" prefWidth="269.0" style="-fx-background-color: #670010;">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <VBox alignment="CENTER" prefHeight="217.0" prefWidth="269.0">
+                  <VBox alignment="CENTER" prefHeight="456.0" prefWidth="269.0">
                      <children>
-                        <Label fx:id="searchTxt1" alignment="CENTER" prefHeight="38.0" prefWidth="200.0" text=" Búsqueda" textAlignment="CENTER">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="searchTxt" alignment="CENTER" prefHeight="35.0" prefWidth="215.0" text="Encuentra el auto de tus sueños" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <GridPane alignment="CENTER" prefHeight="156.0" prefWidth="269.0">
-                          <columnConstraints>
-                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                        <VBox alignment="CENTER" prefHeight="223.0" prefWidth="269.0">
                            <children>
-                              <ComboBox fx:id="cvautos" prefHeight="35.0" prefWidth="115.0" promptText="Autos" style="-fx-background-color: white; -fx-border-color: gray;" />
-                              <ComboBox fx:id="cvmarcas" prefHeight="35.0" prefWidth="115.0" promptText="Marcas" style="-fx-background-color: white; -fx-border-color: gray;" GridPane.columnIndex="1" />
-                              <ComboBox fx:id="cvpreciosdesde" prefHeight="35.0" prefWidth="115.0" promptText="Precios desde" style="-fx-background-color: white; -fx-border-color: gray;" GridPane.rowIndex="1" />
-                              <ComboBox fx:id="cvprecioshasta" prefHeight="35.0" prefWidth="115.0" promptText="Precios hasta" style="-fx-background-color: white; -fx-border-color: gray;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <ComboBox fx:id="cvañosdesde" prefHeight="35.0" prefWidth="115.0" promptText="Años desde" style="-fx-background-color: white; -fx-border-color: gray;" GridPane.rowIndex="2" />
-                              <ComboBox fx:id="cvañoshasta" prefHeight="35.0" prefWidth="115.0" promptText="Años hasta" style="-fx-background-color: white; -fx-border-color: gray;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="searchTxt1" alignment="CENTER" prefHeight="38.0" prefWidth="200.0" text=" Búsqueda" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="searchTxt" alignment="CENTER" prefHeight="35.0" prefWidth="215.0" text="Encuentra el auto de tus sueños" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <GridPane alignment="CENTER" prefHeight="156.0" prefWidth="269.0">
+                                <columnConstraints>
+                                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <ComboBox fx:id="cvautos" prefHeight="35.0" prefWidth="115.0" promptText="Autos" style="-fx-background-color: white; -fx-border-color: gray;" />
+                                    <ComboBox fx:id="cvmarcas" prefHeight="35.0" prefWidth="115.0" promptText="Marcas" style="-fx-background-color: white; -fx-border-color: gray;" GridPane.columnIndex="1" />
+                                    <ComboBox fx:id="cvpreciosdesde" prefHeight="35.0" prefWidth="115.0" promptText="Precios desde" style="-fx-background-color: white; -fx-border-color: gray;" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="cvprecioshasta" prefHeight="35.0" prefWidth="115.0" promptText="Precios hasta" style="-fx-background-color: white; -fx-border-color: gray;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="cvañosdesde" prefHeight="35.0" prefWidth="115.0" promptText="Años desde" style="-fx-background-color: white; -fx-border-color: gray;" GridPane.rowIndex="2" />
+                                    <ComboBox fx:id="cvañoshasta" prefHeight="35.0" prefWidth="115.0" promptText="Años hasta" style="-fx-background-color: white; -fx-border-color: gray;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
                            </children>
-                        </GridPane>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
+                        <Button fx:id="Buscar" alignment="CENTER" mnemonicParsing="false" onAction="#filtrar" prefHeight="32.0" prefWidth="225.0" style="-fx-background-color: #670010; -fx-border-radius: 5;" text="Buscar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
                   </VBox>
-                  <Button fx:id="Buscar" alignment="CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="251.0" style="-fx-background-color: #670010; -fx-border-radius: 5;" text="Buscar" textFill="WHITE">
+                  <Button fx:id="volverBtt" mnemonicParsing="false" onAction="#volver" onMouseClicked="#volver" prefHeight="31.0" prefWidth="236.0" style="-fx-background-color: white; -fx-border-color: #670010; -fx-border-width: 2;" text="Volver" textFill="#670010">
                      <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Button>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
                </children>
             </VBox>
             <VBox fx:id="firstBox" prefHeight="376.0" prefWidth="425.0" HBox.hgrow="ALWAYS">

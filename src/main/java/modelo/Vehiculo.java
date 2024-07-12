@@ -28,7 +28,7 @@ public class Vehiculo implements Serializable {
     private DoublyCircularLinkedList<String> fotos;
     private ArrayList<Accidente> accidentes;
 
-    public Vehiculo(double precio, Marca marca, String modelo, int kilometraje, int ventas, int motor, String peso, String estado, String placa) {
+    public Vehiculo(double precio, Marca marca, String modelo, int kilometraje, int ventas, int motor, String peso, String estado, String placa, int anio) {
         this.precio = precio;
         this.marca = marca;
         this.modelo = modelo;
@@ -40,6 +40,7 @@ public class Vehiculo implements Serializable {
         this.placa = placa;
         this.fotos = new DoublyCircularLinkedList<>();
         this.accidentes = new ArrayList<>();
+        this.año = anio;
     }
 
     public void setPrecio(double precio) {

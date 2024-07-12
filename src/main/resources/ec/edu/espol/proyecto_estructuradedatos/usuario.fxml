@@ -1,11 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyecto_estructuradedatos.UsuarioController">
-    
-</AnchorPane>
+<VBox alignment="TOP_CENTER" prefHeight="700.0" prefWidth="1100.0" style="-fx-border-color: #3c0000; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyecto_estructuradedatos.UsuarioController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #670010;">
+         <children>
+            <ImageView fx:id="imgview" fitHeight="46.0" fitWidth="215.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../imgs/patiotuerca.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" prefHeight="562.0" prefWidth="1047.0">
+         <children>
+            <Label fx:id="bienvenida" alignment="CENTER" prefHeight="42.0" prefWidth="404.0" text="Bienvenido Javier!">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label text="¿Qué desea hacer?" textFill="#1c0000">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="30.0" top="30.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="240.0" prefWidth="420.0">
+               <children>
+                  <VBox fx:id="verventas" alignment="CENTER" onMouseClicked="#iraventas" prefHeight="240.0" prefWidth="240.0" style="-fx-border-color: gray;">
+                     <children>
+                        <Label text="Ver ventas" textFill="#1c0000">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ImageView fitHeight="120.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../imgs/user.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="comprar" alignment="CENTER" onMouseClicked="#iracatalogo" prefHeight="210.0" prefWidth="240.0" style="-fx-border-color: gray; -fx-border-width: 0.5;">
+                     <children>
+                        <Label text="Comprar" textFill="#1c0000">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ImageView fitHeight="98.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../imgs/buscar.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="vender" alignment="CENTER" onMouseClicked="#iravender" prefHeight="240.0" prefWidth="240.0" style="-fx-border-color: gray; -fx-border-width: 0.5;">
+                     <children>
+                        <Label text="Vender" textFill="#1c0000">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ImageView fitHeight="98.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../imgs/vender.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</VBox>
