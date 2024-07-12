@@ -10,7 +10,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -22,14 +21,16 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lists.ArrayList;
 import lists.Iterator;
-import modelo.*;
+import modelo.Usuario;
+import modelo.Utilidades;
+import modelo.Vehiculo;
 
 /**
  * FXML Controller class
  *
- * @author levin
+ * @author JAVIER
  */
-public class VistaCarroController implements Initializable {
+public class VistaCarroFavoritoController implements Initializable {
 
     @FXML
     private HBox mainHBox;
@@ -42,45 +43,44 @@ public class VistaCarroController implements Initializable {
     @FXML
     private Label desc;
     @FXML
+    private Button volverBtt;
+    @FXML
     private VBox firstBox;
     @FXML
     private FlowPane optionsFPane;
     @FXML
     private Label tittleLbl;
     @FXML
+    private HBox buttonfav;
+    @FXML
     private Button retrocederBtt;
     @FXML
     private ImageView imagen;
     @FXML
     private Button avanzarBtt;
-    @FXML
-    private Button volverBtt;
+
     
     private Vehiculo carro;
     
     private Stage stage;
     
     private Stage vistaAutos;
-    
+    Iterator<String> it;
+
     private String user;
     
-    Iterator<String> it;
-    @FXML
-    private HBox buttonfav;
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }
-    void initializeData(String user) {
+    }    
+   void initializeData(String user) {
         this.user = user;
     }
-    
 
-    
+
     public void generar()
     {
         it = carro.getFotos().iterator();
@@ -91,11 +91,10 @@ public class VistaCarroController implements Initializable {
         });
         
     }
-
     public void setCarro(Vehiculo carro) {
         this.carro = carro;
     }
-
+    
     public void setVistaAutos(Stage stage) {
         this.vistaAutos = stage;
     }    
@@ -104,7 +103,6 @@ public class VistaCarroController implements Initializable {
         this.stage = stage;
     }
     
-
     @FXML
     private void retroceso(MouseEvent event) {
         Platform.runLater(()->{
@@ -126,20 +124,21 @@ public class VistaCarroController implements Initializable {
         vistaAutos.show();
         stage.close();
     }
-
+    
+ 
     @FXML
-    private void anadirFavoritos(MouseEvent event) {
-        
+    private void eliminarFavoritos(MouseEvent event) {
         ArrayList<Usuario> usuarios = Utilidades.leerUsuarios();
         Usuario us = Utilidades.obtenerUsuario(user);
         int index = usuarios.getIndex(us);
         Alert al;
-        if(!us.getFavoritos().contains(carro)){
-            usuarios.get(index).getFavoritos().addLast(carro);      
+        if(us.getFavoritos().contains(carro)){
+            int indexcarro = usuarios.get(index).getFavoritos().getIndex(carro);
+            usuarios.get(index).getFavoritos().remove(indexcarro);      
             Utilidades.serializarUsuarios(usuarios);
-            al = new Alert(AlertType.CONFIRMATION, "Se añadió a favoritos!!");
+            al = new Alert(Alert.AlertType.CONFIRMATION, "Se elimino de favoritos!!");
         }
-        else al = new Alert(AlertType.WARNING, "Vehiculo ya en favoritos!!");
+        else al = new Alert(Alert.AlertType.WARNING, "Vehiculo ya no está en favoritos!!");
         al.show();
     }
 
@@ -152,6 +151,5 @@ public class VistaCarroController implements Initializable {
     private void presionado(MouseEvent event) {
         buttonfav.setStyle("-fx-background-color: gray;");
     }
-
     
 }

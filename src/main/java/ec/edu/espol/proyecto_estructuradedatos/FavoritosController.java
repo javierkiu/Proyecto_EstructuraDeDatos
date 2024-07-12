@@ -8,11 +8,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.VBox;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,6 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -36,8 +32,9 @@ import modelo.Vehiculo;
  *
  * @author JAVIER
  */
-public class VentasController implements Initializable {
+public class FavoritosController implements Initializable {
 
+    private String user;
 
     @FXML
     private VBox firstBox;
@@ -45,8 +42,6 @@ public class VentasController implements Initializable {
     private FlowPane optionsFPane;
     @FXML
     private FlowPane carrosfp;
-    
-    private String user;
     @FXML
     private Button backBtt;
     /**
@@ -54,32 +49,16 @@ public class VentasController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO   
+        // TODO
     }    
-
     void initializeData(String user) {
         this.user = user;
-        dibujar(Utilidades.obtenerDatosUsuario(user).getEnVenta());
+        System.out.println(user);
+        System.out.println(Utilidades.obtenerUsuario(user).getFavoritos());
+        System.out.println(Utilidades.obtenerUsuario(user));
+        dibujar(Utilidades.obtenerUsuario(user).getFavoritos());
+
     }
-
-    @FXML
-    private void volver(MouseEvent event) throws IOException {
-            FXMLLoader loader = new  FXMLLoader(getClass().getResource("usuario.fxml"));
-            Parent root = loader.load();
-            
-            UsuarioController controller = loader.getController();
-
-            Scene principal = new Scene(root,1100,700);
-            Stage newStage = new Stage();
-            newStage.setScene(principal);
-            newStage.show();
-            controller.initializeData(user);
-
-            Stage currentStage = (Stage) carrosfp.getScene().getWindow();
-            currentStage.close();
-    }
-    
-    
     
     public boolean dibujar(ArrayList<Vehiculo> carros){
         if(carros.isEmpty()) return false;
@@ -127,7 +106,6 @@ public class VentasController implements Initializable {
         return true;
     }
     
-    
     public void generarVistaCarro(Vehiculo v) 
     {
         Platform.runLater(()  -> {
@@ -136,13 +114,15 @@ public class VentasController implements Initializable {
             
             try {
                 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("VistaCarro.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("VistaCarroFavorito.fxml"));
                 Parent root = loader.load();
                 
-                VistaCarroController controller = loader.getController();
+                VistaCarroFavoritoController controller = loader.getController();
+                
                 controller.setCarro(v);
                 controller.setVistaAutos(stage);
-                
+                controller.initializeData(user);
+
                 controller.generar();
                 
                 Scene principal = new Scene(root,1200,700);
@@ -160,5 +140,25 @@ public class VentasController implements Initializable {
                 stage.hide();
         });
     }
+    
+    
+    @FXML
+    private void volver(MouseEvent event) throws IOException {
+            FXMLLoader loader = new  FXMLLoader(getClass().getResource("usuario.fxml"));
+            Parent root = loader.load();
+            
+            UsuarioController controller = loader.getController();
 
+            Scene principal = new Scene(root,1100,700);
+            Stage newStage = new Stage();
+            newStage.setScene(principal);
+            newStage.show();
+            controller.initializeData(user);
+
+            Stage currentStage = (Stage) carrosfp.getScene().getWindow();
+            currentStage.close();
+    }
+
+
+    
 }

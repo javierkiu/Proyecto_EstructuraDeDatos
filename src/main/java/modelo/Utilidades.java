@@ -29,7 +29,11 @@ public class Utilidades {
             e.printStackTrace();
         };    
     }
-    
+    public static void borrarContenidoArchivo(String nombreArchivo) throws IOException {
+        FileWriter writer = new FileWriter(nombreArchivo, false); // Abrir archivo en modo de escritura (sobrescribir)
+        writer.write(""); // Escribir cadena vacía para borrar el contenido
+        writer.close(); // Cerrar el FileWriter
+    }
     public static boolean registrarUsuario(Usuario us){
         try(BufferedWriter bf = new BufferedWriter(new FileWriter("src/main/resources/files/users.txt",true))){
             String line = us.getUsuario() + "," + us.getNombre() + "," + us.getApellido() +"," +  us.getMail() + "," + us.getContrasena();
@@ -50,6 +54,8 @@ public class Utilidades {
         
         return true;
     }
+    
+    
     public static boolean verificarUsuario(String usuario){
         try(BufferedReader bf = new BufferedReader(new FileReader("src/main/resources/files/users.txt"))){
             String line;
@@ -63,6 +69,9 @@ public class Utilidades {
         }
         return true;
     }
+    
+    
+    
     public static ArrayList<String> obtenerIdentificadores(){
         ArrayList<String> result = new ArrayList<>();
         try(BufferedReader bf = new BufferedReader(new FileReader("src/main/resources/files/users.txt"))){
@@ -93,6 +102,10 @@ public class Utilidades {
         } 
         return null;
     }
+    
+
+    
+    
     
     public static String generarPlaca(){
         StringBuilder str = new StringBuilder();
@@ -129,12 +142,37 @@ public class Utilidades {
         try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("vehiculos.ser"))) {
             ArrayList<Vehiculo> vehiculos = (ArrayList<Vehiculo>) ois.readObject();
             return vehiculos;
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
         }
         return null;
+    }
+    
+    public static ArrayList<Usuario> leerUsuarios (){
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("usuarios.ser"))) {
+            ArrayList<Usuario> usuarios = (ArrayList<Usuario>) ois.readObject();
+            return usuarios;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public static Usuario obtenerUsuario(String usuario){
+        ArrayList<Usuario> usuarios = Utilidades.leerUsuarios();
+        for(Usuario u : usuarios){
+            if(u.getUsuario().equals(usuario)||u.getMail().equals(usuario))
+                return u;
+        }
+        return null;
+    }
+    
+    public static void serializarUsuarios(ArrayList<Usuario> usuarios) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("usuarios.ser"))) {
+            oos.writeObject(usuarios);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     public static void generarVehiculos(){

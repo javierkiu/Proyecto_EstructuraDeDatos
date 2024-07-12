@@ -120,8 +120,18 @@ public class ArrayList<E> implements List<E>, Serializable{
     }
 
     @Override
-    public E remove(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+      public E remove(int indice) {
+        if(indice < 0 || indice >= effectiveSize) return null;
+        E eliminado = elements[indice];
+        // Desplazar elementos
+        for (int i = indice; i < size() - 1; i++) {
+            elements[i] = elements[i + 1];
+        }
+
+        // Ajustar tamaño y último elemento
+        elements[--effectiveSize] = null;
+        return eliminado;
+        
     }
 
     @Override
@@ -132,6 +142,16 @@ public class ArrayList<E> implements List<E>, Serializable{
         return null;
     }
 
+    
+    public int getIndex(E elemento) {
+        for (int i = 0; i < size(); i++) {
+            if (elements[i].equals(elemento)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    
     @Override
     public E set(int index, E element) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

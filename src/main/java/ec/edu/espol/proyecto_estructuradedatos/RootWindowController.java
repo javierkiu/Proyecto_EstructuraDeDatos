@@ -262,6 +262,7 @@ public class RootWindowController implements Initializable {
                 Stage newStage = new Stage();
                 newStage.setScene(principal);
                 newStage.show();
+                controller.initializeData(user);
                 controller.setStage(newStage);
                 
                 

@@ -1,5 +1,6 @@
 package ec.edu.espol.proyecto_estructuradedatos;
 
+import java.io.FileInputStream;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,6 +9,7 @@ import javafx.stage.Stage;
 import lists.*;
 import modelo.*;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 
 /**
  * JavaFX App
@@ -19,8 +21,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Utilidades.escribirListaUsuarios(new ArrayList<Usuario>());
-        Utilidades.generarVehiculos();
+//        Utilidades.borrarContenidoArchivo("src/main/resources/files/users.txt");
+//        Utilidades.escribirListaUsuarios(new ArrayList<Usuario>());
         scene = new Scene(loadFXML("primary"), 640, 580);
         stage.setScene(scene);
         stage.show();
@@ -37,6 +39,13 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+//        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("usuarios.ser"))) {
+//            ArrayList<Usuario> usuarios = (ArrayList<Usuario>) ois.readObject();
+//            System.out.println(usuarios.get(0).getFavoritos());
+//        } catch (IOException | ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+        
     }
 
 }

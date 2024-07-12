@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="700.0" prefWidth="1100.0" style="-fx-border-color: #3c0000; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyecto_estructuradedatos.UsuarioController">
+<VBox alignment="TOP_CENTER" prefHeight="700.0" prefWidth="1100.0" style="-fx-border-color: #3c0000; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyecto_estructuradedatos.UsuarioController">
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #670010;">
          <children>
@@ -97,12 +97,35 @@
                         <Insets top="10.0" />
                      </padding>
                   </VBox>
+                  <VBox fx:id="vender1" alignment="CENTER" onMouseClicked="#irafavoritos" prefHeight="240.0" prefWidth="240.0" style="-fx-border-color: gray; -fx-border-width: 0.5;">
+                     <children>
+                        <Label text="Ver Favoritos" textFill="#1c0000">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ImageView fitHeight="98.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../imgs/favoritos.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </VBox>
                </children>
             </HBox>
-            <Button fx:id="closeBtt" mnemonicParsing="false" onMouseClicked="#cerrarSesion" text="Cerrar sesión">
+            <Button fx:id="closeBtt" mnemonicParsing="false" onMouseClicked="#cerrarSesion" prefHeight="33.0" prefWidth="140.0" style="-fx-background-color: #670010;" text="Cerrar sesión" textFill="WHITE">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
             </Button>
          </children>
       </VBox>

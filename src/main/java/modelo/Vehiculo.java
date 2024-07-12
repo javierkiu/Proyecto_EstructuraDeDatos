@@ -4,6 +4,7 @@
  */
 package modelo;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Random;
 import lists.*;
 /**
@@ -115,6 +116,27 @@ public class Vehiculo implements Serializable {
                     "Estado: " + getEstado().toUpperCase() + "\n" +
                     "Placa: " + getPlaca() + "\n" +
                     "Precio: " + getPrecio() + "\n";
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Vehiculo other = (Vehiculo) obj;
+        return Objects.equals(this.placa, other.placa);
     }
     
     

@@ -29,6 +29,8 @@ public class UsuarioController implements Initializable {
     private Stage stage;
     @FXML
     private Button closeBtt;
+    @FXML
+    private VBox vender1;
     public void setStage(Stage stage) {
         this.stage = stage;
     }
@@ -63,7 +65,7 @@ public class UsuarioController implements Initializable {
 
         VentasController controller = loader.getController();
 
-        Scene principal = new Scene(root,900,600);
+        Scene principal = new Scene(root,1100,700);
         Stage newStage = new Stage();
         newStage.setScene(principal);
         newStage.show();
@@ -95,7 +97,6 @@ public class UsuarioController implements Initializable {
     private void iravender(MouseEvent event) {
 
 
-
     }
 
     @FXML
@@ -110,6 +111,23 @@ public class UsuarioController implements Initializable {
         Stage newStage = new Stage();
         newStage.setScene(principal);
         newStage.show();
+
+        Stage currentStage = (Stage) bienvenida.getScene().getWindow();
+        currentStage.close();
+    }
+
+    @FXML
+    private void irafavoritos(MouseEvent event) throws IOException {
+        FXMLLoader loader = new  FXMLLoader(getClass().getResource("favoritos.fxml"));
+        Parent root = loader.load();
+
+        FavoritosController controller = loader.getController();
+
+        Scene principal = new Scene(root,1100,700);
+        Stage newStage = new Stage();
+        newStage.setScene(principal);
+        newStage.show();
+        controller.initializeData(user);
 
         Stage currentStage = (Stage) bienvenida.getScene().getWindow();
         currentStage.close();
