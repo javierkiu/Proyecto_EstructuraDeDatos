@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,6 +27,8 @@ import javafx.stage.Stage;
  */
 public class UsuarioController implements Initializable {
     private Stage stage;
+    @FXML
+    private Button closeBtt;
     public void setStage(Stage stage) {
         this.stage = stage;
     }
@@ -55,19 +58,19 @@ public class UsuarioController implements Initializable {
     }
     @FXML
     private void iraventas(MouseEvent event) throws IOException {
-//        FXMLLoader loader = new  FXMLLoader(getClass().getResource("ventas.fxml"));
-//        Parent root = loader.load();
-//
-//        VentasController controller = loader.getController();
-//
-//        Scene principal = new Scene(root,900,600);
-//        Stage newStage = new Stage();
-//        newStage.setScene(principal);
-//        newStage.show();
-//        controller.initializeData(user);
-//
-//        Stage currentStage = (Stage) bienvenida.getScene().getWindow();
-//        currentStage.close();
+        FXMLLoader loader = new  FXMLLoader(getClass().getResource("ventas.fxml"));
+        Parent root = loader.load();
+
+        VentasController controller = loader.getController();
+
+        Scene principal = new Scene(root,900,600);
+        Stage newStage = new Stage();
+        newStage.setScene(principal);
+        newStage.show();
+        controller.initializeData(user);
+
+        Stage currentStage = (Stage) bienvenida.getScene().getWindow();
+        currentStage.close();
     }
 
     @FXML
@@ -95,6 +98,20 @@ public class UsuarioController implements Initializable {
 
     }
 
+    @FXML
+    private void cerrarSesion(MouseEvent event) throws IOException {
+        
+        FXMLLoader loader = new  FXMLLoader(getClass().getResource("primary.fxml"));
+        Parent root = loader.load();
 
+        PrimaryController controller = loader.getController();
 
+        Scene principal = new Scene(root,640, 580);
+        Stage newStage = new Stage();
+        newStage.setScene(principal);
+        newStage.show();
+
+        Stage currentStage = (Stage) bienvenida.getScene().getWindow();
+        currentStage.close();
+    }
 }

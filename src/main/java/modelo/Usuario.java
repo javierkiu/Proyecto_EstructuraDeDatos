@@ -41,6 +41,10 @@ public class Usuario implements Serializable{
         return mail;
     }
 
+    public ArrayList<Vehiculo> getEnVenta() {
+        return enVenta;
+    }
+
     public Usuario(String usuario, String nombre, String apellido, String mail, String contrasena) {
         this.nombre = nombre;
         this.apellido = apellido;

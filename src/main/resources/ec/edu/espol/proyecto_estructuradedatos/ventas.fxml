@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="firstBox" prefHeight="601.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyecto_estructuradedatos.VentasController">
+<VBox fx:id="firstBox" alignment="CENTER" prefHeight="601.0" prefWidth="900.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyecto_estructuradedatos.VentasController">
    <children>
       <FlowPane fx:id="optionsFPane" alignment="CENTER" prefHeight="55.0" prefWidth="750.0" style="-fx-background-color: #670010;">
          <VBox.margin>
@@ -22,13 +22,14 @@
             </Label>
          </children>
       </FlowPane>
-      <ScrollPane prefHeight="544.0" prefWidth="900.0">
+      <ScrollPane hbarPolicy="NEVER" prefHeight="544.0" prefWidth="900.0">
          <content>
-            <FlowPane fx:id="carrosfp" alignment="CENTER" columnHalignment="CENTER" prefHeight="539.0" prefWidth="897.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#volver" text="Volver" />
-               </children></FlowPane>
+            <FlowPane fx:id="carrosfp" alignment="CENTER" columnHalignment="CENTER" prefHeight="539.0" prefWidth="897.0" />
          </content>
       </ScrollPane>
+      <Button fx:id="backBtt" alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#volver" text="Volver" />
    </children>
+   <padding>
+      <Insets bottom="10.0" />
+   </padding>
 </VBox>
