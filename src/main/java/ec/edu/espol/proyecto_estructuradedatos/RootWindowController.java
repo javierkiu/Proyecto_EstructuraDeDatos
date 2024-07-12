@@ -82,6 +82,8 @@ public class RootWindowController implements Initializable {
     private Button Buscar;
     @FXML
     private Button volverBtt;
+    @FXML
+    private Button cleanBtt;
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -289,8 +291,15 @@ public class RootWindowController implements Initializable {
             currentStage.close();
     }
 
-    
-    
-    
+    @FXML
+    private void filterClean(MouseEvent event) {
+        Platform.runLater(()->{
+            carrosfp.getChildren().clear();
+            dibujar(carros);
+        });
+        
+    }
+
+
     
 }
